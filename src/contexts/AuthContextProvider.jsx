@@ -33,10 +33,10 @@ const AuthContextProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserProfile = (displayName, imageURL) => {
+  const updateUserProfile = (user, displayName, photoURL) => {
     return updateProfile(user, {
       displayName: displayName,
-      photoURL: imageURL,
+      photoURL: photoURL,
     });
   };
 
