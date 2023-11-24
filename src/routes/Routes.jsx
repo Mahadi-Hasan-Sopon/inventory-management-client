@@ -6,6 +6,7 @@ import CreateShop from "../pages/createShop/CreateShop";
 import WatchDemo from "../pages/watchDemo/WatchDemo";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
+import Dashboard from "../pages/dashboard/Dashboard";
 
 const routes = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
       },
     ],
   },
