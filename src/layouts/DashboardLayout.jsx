@@ -16,7 +16,7 @@ const DashboardLayout = () => {
       <Navbar />
       <Container>
         <div className="grid grid-cols-5 relative">
-          <div className="grid-cols-1 border-r border-r-[#E8EBED] min-h-screen w-full py-6">
+          <div className="grid-cols-1 border-r border-r-[#E8EBED] w-full py-6">
             <div className="flex flex-col gap-1 list-none text-xl">
               <li>
                 <NavLink
@@ -139,7 +139,7 @@ const DashboardLayout = () => {
               </li>
             </div>
           </div>
-          <div className="col-span-4 px-4 py-6">
+          <div className="col-span-4 ps-4 py-6">
             <Outlet />
           </div>
         </div>

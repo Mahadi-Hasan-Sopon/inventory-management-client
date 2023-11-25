@@ -15,6 +15,7 @@ import SubscriptionAndPayment from "../pages/dashboard/subscription-payment/Subs
 import SalesCollection from "../pages/dashboard/sales-collection/SalesCollection";
 import SalesSummary from "../pages/dashboard/sales-summary/SalesSummary";
 import PrivateRoutes from "./PrivateRoutes";
+import { axiosSecure } from "../hooks/useAxios";
 
 const routes = createBrowserRouter([
   {
@@ -63,6 +64,7 @@ const routes = createBrowserRouter([
             <ProductManagement />
           </PrivateRoutes>
         ),
+        loader: () => axiosSecure.get('/products')
       },
       {
         path: "products",
