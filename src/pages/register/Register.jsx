@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import uploadImage from "../../utils/uploadImage/uploadImage";
 import { Link, useNavigate } from "react-router-dom";
+import { axiosPublic } from "../../hooks/useAxios";
 
 const Register = () => {
   const { createUserWithEmail, updateUserProfile } = useAuth();
@@ -16,6 +17,19 @@ const Register = () => {
     const image = form.image.files[0];
 
     const loadingToast = toast.loading("Registration in process...");
+
+    if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
+      toast.error("Please Provide valid Email", { id: loadingToast });
+      return;
+    }
+    if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/.test(password)) {
+      toast.error(
+        "Password must be 6 character long, with at least one uppercase letter and one special character",
+        { id: loadingToast }
+      );
+      return;
+    }
+
     try {
       // upload image to imgbb
       const isImage = await uploadImage(image);
@@ -31,6 +45,15 @@ const Register = () => {
       const profileImage = isImage?.data?.display_url;
       console.log(profileImage);
 
+      // save user to database
+      const { data } = await axiosPublic.post("/users", {
+        email: email,
+        name: name,
+        image: profileImage,
+      });
+      if (!data.insertedId) {
+        toast.error("Failed creating user", { id: loadingToast });
+      }
       // update user name & avatar
       await updateUserProfile(register.user, name, profileImage).then(() => {
         toast.success("User Registration Successful.", { id: loadingToast });

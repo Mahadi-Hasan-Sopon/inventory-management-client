@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../configs/firebase.config";
+import { axiosSecure } from "../hooks/useAxios";
 
 export const AuthContext = createContext(null);
 
@@ -49,6 +50,17 @@ const AuthContextProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+
+      if (currentUser) {
+        const userDetails = { email: currentUser.email };
+
+        axiosSecure
+          .post("/jwt", userDetails)
+          .then((data) => {
+            console.log(data.data);
+          })
+          .catch((err) => console.log(err));
+      }
     });
 
     return () => unSubscribe();
