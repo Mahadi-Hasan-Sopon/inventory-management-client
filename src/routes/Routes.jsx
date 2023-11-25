@@ -14,6 +14,7 @@ import Checkout from "../pages/dashboard/checkout/Checkout";
 import SubscriptionAndPayment from "../pages/dashboard/subscription-payment/SubscriptionAndPayment";
 import SalesCollection from "../pages/dashboard/sales-collection/SalesCollection";
 import SalesSummary from "../pages/dashboard/sales-summary/SalesSummary";
+import PrivateRoutes from "./PrivateRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -49,31 +50,59 @@ const routes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: (
+          <PrivateRoutes>
+            <Dashboard />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "product-management",
-        element: <ProductManagement />,
+        element: (
+          <PrivateRoutes>
+            <ProductManagement />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "products",
-        element: <Products />,
+        element: (
+          <PrivateRoutes>
+            <Products />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "sales-collection",
-        element: <SalesCollection />,
+        element: (
+          <PrivateRoutes>
+            <SalesCollection />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "checkout",
-        element: <Checkout />,
+        element: (
+          <PrivateRoutes>
+            <Checkout />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "subscription",
-        element: <SubscriptionAndPayment />,
+        element: (
+          <PrivateRoutes>
+            <SubscriptionAndPayment />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "sales-summary",
-        element: <SalesSummary />,
+        element: (
+          <PrivateRoutes>
+            <SalesSummary />
+          </PrivateRoutes>
+        ),
       },
     ],
   },
