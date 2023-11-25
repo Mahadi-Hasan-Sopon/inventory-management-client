@@ -10,7 +10,10 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import ProductManagement from "../pages/dashboard/product-management/ProductManagement";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Products from "../pages/dashboard/products/Products";
-import Sales from "../pages/dashboard/sales/Sales";
+import Checkout from "../pages/dashboard/checkout/Checkout";
+import SubscriptionAndPayment from "../pages/dashboard/subscription-payment/SubscriptionAndPayment";
+import SalesCollection from "../pages/dashboard/sales-collection/SalesCollection";
+import SalesSummary from "../pages/dashboard/sales-summary/SalesSummary";
 
 const routes = createBrowserRouter([
   {
@@ -57,8 +60,20 @@ const routes = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "sales",
-        element: <Sales />,
+        path: "sales-collection",
+        element: <SalesCollection />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "subscription",
+        element: <SubscriptionAndPayment />,
+      },
+      {
+        path: "sales-summary",
+        element: <SalesSummary />,
       },
     ],
   },

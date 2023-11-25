@@ -1,4 +1,4 @@
-const Sales = () => {
+const SalesCollection = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold">Sales Collection</h1>
@@ -6,4 +6,4 @@ const Sales = () => {
   );
 };
 
-export default Sales;
+export default SalesCollection;

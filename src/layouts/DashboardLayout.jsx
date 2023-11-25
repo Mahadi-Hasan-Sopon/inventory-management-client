@@ -1,7 +1,12 @@
-import { RxCube, RxDashboard } from "react-icons/rx";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Container from "../components/shared/Container";
+import {
+  MdOutlinePayment,
+  MdOutlineShoppingCartCheckout,
+  MdOutlineSummarize,
+} from "react-icons/md";
+import { RxCube, RxDashboard } from "react-icons/rx";
 import { SiGoogletagmanager } from "react-icons/si";
 import { BsStack } from "react-icons/bs";
 
@@ -73,11 +78,62 @@ const DashboardLayout = () => {
                       ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
                       : "text-slate-500 font-medium p-2 block"
                   }
-                  to="/dashboard/sales"
+                  to="/dashboard/sales-collection"
                 >
                   <div className="flex gap-2 items-center">
                     <BsStack />
                     <span className="block">Sales Collection</span>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "pending"
+                      : isActive
+                      ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                      : "text-slate-500 font-medium p-2 block"
+                  }
+                  to="/dashboard/checkout"
+                >
+                  <div className="flex gap-2 items-center">
+                    <MdOutlineShoppingCartCheckout />
+                    <span className="block">Checkout</span>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "pending"
+                      : isActive
+                      ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                      : "text-slate-500 font-medium p-2 block"
+                  }
+                  to="/dashboard/subscription"
+                >
+                  <div className="flex gap-2 items-center">
+                    <MdOutlinePayment />
+                    <span className="block">Subscription</span>
+                  </div>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "pending"
+                      : isActive
+                      ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                      : "text-slate-500 font-medium p-2 block"
+                  }
+                  to="/dashboard/sales-summary"
+                >
+                  <div className="flex gap-2 items-center">
+                    <MdOutlineSummarize />
+                    <span className="block">Sales Summary</span>
                   </div>
                 </NavLink>
               </li>
