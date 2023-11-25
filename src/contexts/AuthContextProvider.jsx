@@ -57,7 +57,7 @@ const AuthContextProvider = ({ children }) => {
         axiosSecure
           .post("/jwt", userDetails)
           .then((data) => {
-            console.log(data.data);
+            console.log(data.data?.message);
           })
           .catch((err) => console.log(err));
       }

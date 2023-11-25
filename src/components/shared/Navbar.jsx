@@ -179,7 +179,7 @@ const Navbar = () => {
                 {navItems}
               </ul>
             </div>
-            <Link to="/" className="btn btn-ghost text-2xl">
+            <Link to="/" className="text-2xl font-bold">
               Inventory
             </Link>
           </div>

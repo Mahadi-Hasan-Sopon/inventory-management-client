@@ -2,9 +2,12 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import uploadImage from "../../utils/uploadImage/uploadImage";
 import { axiosSecure } from "../../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
 
 const CreateShop = () => {
   const { user, loading } = useAuth();
+
+  const navigate = useNavigate();
 
   if (loading)
     return (
@@ -64,6 +67,7 @@ const CreateShop = () => {
 
         if (data?.modifiedCount > 0) {
           toast.success("Shop created successfully.", { id: loadingToast });
+          navigate("/dashboard");
         } else {
           toast.error("Something went wrong", { id: loadingToast });
         }

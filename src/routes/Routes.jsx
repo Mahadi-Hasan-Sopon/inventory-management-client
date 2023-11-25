@@ -7,6 +7,10 @@ import WatchDemo from "../pages/watchDemo/WatchDemo";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import Dashboard from "../pages/dashboard/Dashboard";
+import ProductManagement from "../pages/dashboard/product-management/ProductManagement";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Products from "../pages/dashboard/products/Products";
+import Sales from "../pages/dashboard/sales/Sales";
 
 const routes = createBrowserRouter([
   {
@@ -34,9 +38,27 @@ const routes = createBrowserRouter([
         path: "login",
         element: <Login />,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
       {
-        path: "dashboard",
+        index: true,
         element: <Dashboard />,
+      },
+      {
+        path: "product-management",
+        element: <ProductManagement />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "sales",
+        element: <Sales />,
       },
     ],
   },
