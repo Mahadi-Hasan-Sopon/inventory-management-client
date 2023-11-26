@@ -27,6 +27,7 @@ const DashboardLayout = () => {
             type="checkbox"
             className="drawer-toggle"
             checked={checked}
+            readOnly
           />
           <div className="drawer-content flex flex-col">
             {/* Page content here */}

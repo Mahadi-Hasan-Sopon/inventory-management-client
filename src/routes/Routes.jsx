@@ -74,7 +74,6 @@ const routes = createBrowserRouter([
             <Products />
           </PrivateRoutes>
         ),
-        loader: () => axiosSecure.get("/products"),
       },
       {
         path: "sales-collection",
