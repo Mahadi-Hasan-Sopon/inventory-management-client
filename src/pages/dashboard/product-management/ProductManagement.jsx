@@ -122,9 +122,9 @@ const ProductManagement = () => {
       {/* modal */}
       <dialog
         id="addProductModal"
-        className="modal modal-bottom sm:modal-middle"
+        className="modal modal-bottom sm:modal-middle max-h-max overflow-y-scroll"
       >
-        <div className="w-11/12 mx-auto">
+        <div className="w-11/12 mx-auto max-h-[95vh]">
           <form
             onSubmit={handleAddProduct}
             className="bg-slate-100 dark:bg-base-200 py-4 md:py-10 px-4 md:px-10 rounded"
@@ -297,7 +297,7 @@ const ProductManagement = () => {
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button className="btn mb-6">Close</button>
             </form>
           </div>
         </div>
