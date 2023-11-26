@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import Container from "./Container";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { MdOutlineInventory2 } from "react-icons/md";
 
 const Navbar = () => {
   const { user, loading, logOutUser } = useAuth();
@@ -140,7 +141,7 @@ const Navbar = () => {
             <button
               onClick={handleLogOut}
               type="button"
-              className="btn btn-outline btn-error btn-sm opacity-100"
+              className="btn btn-outline btn-error btn-sm opacity-100 font-medium py-2.5 min-h-auto h-auto px-4"
             >
               LogOut
             </button>
@@ -179,8 +180,8 @@ const Navbar = () => {
                 {navItems}
               </ul>
             </div>
-            <Link to="/" className="text-2xl font-bold">
-              Inventory
+            <Link to="/" className="text-2xl font-bold flex items-center gap-2">
+              <MdOutlineInventory2 /> <span className="block">Inventory</span>
             </Link>
           </div>
           <div className="navbar-end hidden lg:flex">

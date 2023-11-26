@@ -78,8 +78,18 @@ const ProductManagement = () => {
           </button>
         </div>
       ) : (
-        <div>
-          <h1 className="text-3xl font-bold">Product Management</h1>
+        <div className="flex items-center justify-between gap-6">
+          <h1 className="text-2xl font-bold">
+            Total {products?.data?.length} Product Added
+          </h1>
+          <button
+            onClick={() =>
+              document.getElementById("addProductModal").showModal()
+            }
+            className="btn btn-primary text-white px-8 py-2"
+          >
+            Add Product
+          </button>
         </div>
       )}
 
