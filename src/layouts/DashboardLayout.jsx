@@ -52,7 +52,7 @@ const DashboardLayout = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <div className="menu p-4 w-64 min-h-full border-r border-r-[#E8EBED] bg-white">
+            <div className="py-6 ps-2 w-64 min-h-full border-r border-r-[#E8EBED] bg-white">
               {/* Sidebar content here */}
               <div className="flex flex-col gap-1 list-none text-xl relative">
                 <div className="md:hidden flex absolute -right-5 top-4 justify-end items-center">
@@ -102,8 +102,8 @@ const DashboardNavItems = () => {
             isPending
               ? "text-slate-500 font-medium p-2 block"
               : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
+              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/20 p-2 block rounded"
+              : "text-slate-500 font-medium p-2 block bg-transparent"
           }
           to="/dashboard"
           end
@@ -233,7 +233,7 @@ const DashboardNavItems = () => {
         </NavLink>
       </li>
       <li>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 p-2">
           <div className="avatar flex-col justify-center items-center">
             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <img
