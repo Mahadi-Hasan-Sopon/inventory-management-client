@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import uploadImage from "../../../utils/uploadImage/uploadImage";
 import toast from "react-hot-toast";
@@ -7,6 +7,8 @@ import { axiosSecure } from "../../../hooks/useAxios";
 const ProductManagement = () => {
   const products = useLoaderData();
   const { user } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
@@ -23,8 +25,12 @@ const ProductManagement = () => {
     const productLocation = form.productLocation.value;
     const productDescription = form.productDescription.value;
 
-    const imageResponse = await uploadImage(productLogo);
-    const productLogoURL = imageResponse?.data.display_url;
+    let productLogoURL;
+
+    if (productLogo) {
+      const imageResponse = await uploadImage(productLogo);
+      productLogoURL = imageResponse?.data?.display_url;
+    }
 
     const productDetails = {
       productName,
@@ -37,7 +43,7 @@ const ProductManagement = () => {
       productDescription,
       ownerEmail,
       ownerName,
-      productLogoURL,
+      productLogoURL: productLogoURL ? productLogoURL : "",
     };
 
     const loadingToast = toast.loading("Adding product, please wait...");
@@ -55,6 +61,26 @@ const ProductManagement = () => {
       }
     } catch (error) {
       console.log(error);
+
+      if (
+        error.response?.status == 401 &&
+        error?.response?.data?.message == "Not Authorized"
+      ) {
+        document.getElementById("addProductModal").close();
+        toast.error("You are not authorized for adding product", {
+          id: loadingToast,
+        });
+        return;
+      }
+
+      if (
+        error.response?.status == 403 &&
+        error.response?.data?.message == "Product Limit reached."
+      ) {
+        document.getElementById("addProductModal").close();
+        return navigate("/dashboard/subscription");
+      }
+
       toast.error(error?.response?.data?.message || error?.message, {
         id: loadingToast,
       });
