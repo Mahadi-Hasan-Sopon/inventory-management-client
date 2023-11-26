@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { axiosSecure } from "../../../hooks/useAxios";
+import toast from "react-hot-toast";
 
 const SalesCollection = () => {
   const loadedProducts = useLoaderData();
@@ -15,6 +17,50 @@ const SalesCollection = () => {
       // console.log({ text, filteredProducts });
     } else {
       setProducts(loadedProducts?.data);
+    }
+  };
+
+  const handleCheckoutClick = async (productId) => {
+    const loadingToast = toast.loading("Adding to cart....");
+    const product = loadedProducts?.data.find(
+      (product) => product._id === productId
+    );
+
+    const updateProduct = {
+      productName: product.productName,
+      productCost: product.productCost,
+      productQuantity: 1,
+      profitMargin: product.profitMargin,
+      productDiscount: product.productDiscount,
+      productRating: product.productRating,
+      productLocation: product.productLocation,
+      productDescription: product.productDescription,
+      ownerEmail: product.ownerEmail,
+      ownerName: product.ownerName,
+      productLogoURL: product.productLogoURL,
+      shopId: product.shopId,
+      shopName: product.shopName,
+      sellingPrice: product.sellingPrice,
+      salesCount: product.salesCount,
+      createdAt: product.createdAt,
+      productId: productId,
+    };
+
+    try {
+      const response = await axiosSecure.put("/cart", updateProduct);
+      console.log(response.data);
+      if (response?.data?.acknowledged && response?.data?.insertedId) {
+        toast.success("Product added to Cart", { id: loadingToast });
+      } else if (response?.data?.modifiedCount > 0) {
+        toast.success("Product Quantity Updated by 1", { id: loadingToast });
+      } else {
+        toast.error("Something went wrong!", { id: loadingToast });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message || error?.message, {
+        id: loadingToast,
+      });
     }
   };
 
@@ -75,7 +121,12 @@ const SalesCollection = () => {
                 <td> {product?.productDiscount}% </td>
                 <td>$ {product?.sellingPrice} </td>
                 <td>
-                  <button className="btn btn-info">CheckOut</button>
+                  <button
+                    onClick={() => handleCheckoutClick(product._id)}
+                    className="btn btn-info"
+                  >
+                    CheckOut
+                  </button>
                 </td>
               </tr>
             ))}
