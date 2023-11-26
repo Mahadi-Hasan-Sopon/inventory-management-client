@@ -64,7 +64,7 @@ const routes = createBrowserRouter([
             <ProductManagement />
           </PrivateRoutes>
         ),
-        loader: () => axiosSecure.get('/products')
+        loader: () => axiosSecure.get("/products"),
       },
       {
         path: "products",
@@ -73,6 +73,7 @@ const routes = createBrowserRouter([
             <Products />
           </PrivateRoutes>
         ),
+        loader: () => axiosSecure.get("/products"),
       },
       {
         path: "sales-collection",

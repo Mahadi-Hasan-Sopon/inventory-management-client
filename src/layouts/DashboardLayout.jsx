@@ -7,31 +7,70 @@ import {
   MdOutlineShoppingCartCheckout,
   MdOutlineSummarize,
 } from "react-icons/md";
+import { FaBarsStaggered, FaAnglesLeft } from "react-icons/fa6";
 import { RxCube, RxDashboard } from "react-icons/rx";
 import { SiGoogletagmanager } from "react-icons/si";
 import { BsStack } from "react-icons/bs";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import { useState } from "react";
 
 const DashboardLayout = () => {
+  const [checked, setChecked] = useState(false);
+
   return (
     <div>
       <Container>
-        <div className="grid grid-cols-5 relative">
-          <div className="grid-cols-1 border-r border-r-[#E8EBED] w-full py-6">
-            <div className="flex flex-col gap-1 list-none text-xl">
-              <li className="px-2">
-                <div className="text-2xl font-bold flex items-center gap-2">
-                  <MdOutlineInventory2 />{" "}
-                  <span className="block text-2xl">Inventory</span>
-                </div>
-              </li>
-              <div className="divider my-1"></div>
-              <DashboardNavItems />
+        <div className="drawer md:drawer-open">
+          <input
+            id="my-drawer-2"
+            type="checkbox"
+            className="drawer-toggle"
+            checked={checked}
+          />
+          <div className="drawer-content flex flex-col">
+            {/* Page content here */}
+            <div className="flex justify-between gap-6 w-full md:hidden">
+              <label htmlFor="my-drawer-2" className="drawer-button">
+                <FaBarsStaggered
+                  className="text-2xl my-2 block cursor-pointer"
+                  onClick={() => setChecked(!checked)}
+                />
+              </label>
+              <div className="text-2xl font-bold flex items-center gap-2">
+                <MdOutlineInventory2 />{" "}
+                <span className="block text-2xl">Inventory</span>
+              </div>
+            </div>
+            <div className="ps-4 py-6">
+              <Outlet />
             </div>
           </div>
-          <div className="col-span-4 ps-4 py-6">
-            <Outlet />
+          <div className="drawer-side">
+            <label
+              htmlFor="my-drawer-2"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <div className="menu p-4 w-64 min-h-full border-r border-r-[#E8EBED] bg-white">
+              {/* Sidebar content here */}
+              <div className="flex flex-col gap-1 list-none text-xl relative">
+                <div className="md:hidden flex absolute -right-5 top-4 justify-end items-center">
+                  <FaAnglesLeft
+                    className="text-2xl block text-red-700 cursor-pointer"
+                    onClick={() => setChecked(!checked)}
+                  />
+                </div>
+                <li className="px-2">
+                  <div className="text-2xl font-bold flex items-center gap-2">
+                    <MdOutlineInventory2 />{" "}
+                    <span className="block text-2xl">Inventory</span>
+                  </div>
+                </li>
+                <div className="divider my-1"></div>
+                <DashboardNavItems />
+              </div>
+            </div>
           </div>
         </div>
       </Container>
@@ -193,7 +232,7 @@ const DashboardNavItems = () => {
           </div>
         </NavLink>
       </li>
-      <li className="p-2">
+      <li>
         <div className="flex items-center gap-4">
           <div className="avatar flex-col justify-center items-center">
             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
