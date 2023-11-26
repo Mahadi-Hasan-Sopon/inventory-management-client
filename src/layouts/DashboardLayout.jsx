@@ -6,6 +6,7 @@ import {
   MdOutlinePayment,
   MdOutlineShoppingCartCheckout,
   MdOutlineSummarize,
+  MdShoppingCart,
 } from "react-icons/md";
 import { FaBarsStaggered, FaAnglesLeft } from "react-icons/fa6";
 import { RxCube, RxDashboard } from "react-icons/rx";
@@ -162,6 +163,23 @@ const DashboardNavItems = () => {
           <div className="flex gap-2 items-center">
             <BsStack />
             <span className="block">Sales Collection</span>
+          </div>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "text-slate-500 font-medium p-2 block"
+              : isActive
+              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+              : "text-slate-500 font-medium p-2 block"
+          }
+          to="/dashboard/cart"
+        >
+          <div className="flex gap-2 items-center">
+            <MdShoppingCart />
+            <span className="block">Cart</span>
           </div>
         </NavLink>
       </li>

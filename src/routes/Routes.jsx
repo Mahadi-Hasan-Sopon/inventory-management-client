@@ -17,6 +17,7 @@ import SalesSummary from "../pages/dashboard/sales-summary/SalesSummary";
 import PrivateRoutes from "./PrivateRoutes";
 import { axiosSecure } from "../hooks/useAxios";
 import UpdateProduct from "../pages/dashboard/updateProduct/UpdateProduct";
+import CheckoutCart from "../pages/dashboard/checkout/CheckoutCart";
 
 const routes = createBrowserRouter([
   {
@@ -85,12 +86,22 @@ const routes = createBrowserRouter([
         loader: () => axiosSecure.get("/products"),
       },
       {
+        path: "cart",
+        element: (
+          <PrivateRoutes>
+            <CheckoutCart />
+          </PrivateRoutes>
+        ),
+        loader: () => axiosSecure.get("/carts"),
+      },
+      {
         path: "checkout",
         element: (
           <PrivateRoutes>
             <Checkout />
           </PrivateRoutes>
         ),
+        loader: () => axiosSecure.get("/carts"),
       },
       {
         path: "subscription",

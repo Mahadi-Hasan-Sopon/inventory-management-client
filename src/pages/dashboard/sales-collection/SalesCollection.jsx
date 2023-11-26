@@ -29,7 +29,8 @@ const SalesCollection = () => {
     const updateProduct = {
       productName: product.productName,
       productCost: product.productCost,
-      productQuantity: 1,
+      productQuantity: product.productQuantity,
+      soldQuantity: 1,
       profitMargin: product.profitMargin,
       productDiscount: product.productDiscount,
       productRating: product.productRating,
@@ -47,8 +48,8 @@ const SalesCollection = () => {
     };
 
     try {
-      const response = await axiosSecure.put("/cart", updateProduct);
-      console.log(response.data);
+      const response = await axiosSecure.put("/carts", updateProduct);
+      // console.log(response.data);
       if (response?.data?.acknowledged && response?.data?.insertedId) {
         toast.success("Product added to Cart", { id: loadingToast });
       } else if (response?.data?.modifiedCount > 0) {
