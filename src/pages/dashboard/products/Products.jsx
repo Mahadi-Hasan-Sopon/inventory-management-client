@@ -1,8 +1,9 @@
-import { useLoaderData } from "react-router-dom";
-
+import { Link, useLoaderData } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 const Products = () => {
   const loadedProducts = useLoaderData();
-  console.log(loadedProducts.data);
+  // console.log(loadedProducts.data);
 
   return (
     <div>
@@ -23,8 +24,8 @@ const Products = () => {
           </thead>
           <tbody>
             {loadedProducts?.data?.map((product, index) => (
-              <tr key={product?._id}>
-                <th> {index + 1} </th>
+              <tr key={product?._id} className="text-base text-slate-600">
+                <td> {index + 1} </td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -40,11 +41,17 @@ const Products = () => {
                 <td> {product?.productName} </td>
                 <td>{product?.productQuantity}</td>
                 <td> {product?.totalSales ? product?.totalSales : 0} </td>
-
                 <td>
                   <div className="flex gap-2 items-center">
-                    <button className="btn btn-primary">Update</button>
-                    <button className="btn btn-error">Delete</button>
+                    <Link
+                      to={`/dashboard/product/update/${product._id}`}
+                      className="text-2xl font-bold bg-blue-600 text-white p-2.5 rounded-lg text-center"
+                    >
+                      <FaEdit />
+                    </Link>
+                    <button className="text-2xl font-bold bg-red-600 text-white p-2.5 rounded-lg text-center">
+                      <MdDeleteOutline />
+                    </button>
                   </div>
                 </td>
               </tr>

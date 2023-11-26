@@ -16,6 +16,7 @@ import SalesCollection from "../pages/dashboard/sales-collection/SalesCollection
 import SalesSummary from "../pages/dashboard/sales-summary/SalesSummary";
 import PrivateRoutes from "./PrivateRoutes";
 import { axiosSecure } from "../hooks/useAxios";
+import UpdateProduct from "../pages/dashboard/updateProduct/UpdateProduct";
 
 const routes = createBrowserRouter([
   {
@@ -106,6 +107,12 @@ const routes = createBrowserRouter([
             <SalesSummary />
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "product/update/:productId",
+        element: <UpdateProduct />,
+        loader: ({ params }) =>
+          axiosSecure.get(`/product/${params?.productId}`),
       },
     ],
   },

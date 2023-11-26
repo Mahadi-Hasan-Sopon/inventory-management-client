@@ -54,7 +54,7 @@ const DashboardLayout = () => {
             ></label>
             <div className="py-6 ps-2 w-64 min-h-full border-r border-r-[#E8EBED] bg-white">
               {/* Sidebar content here */}
-              <div className="flex flex-col gap-1 list-none text-xl relative">
+              <div className="flex flex-col gap-3 list-none text-xl relative">
                 <div className="md:hidden flex absolute -right-5 top-4 justify-end items-center">
                   <FaAnglesLeft
                     className="text-2xl block text-red-700 cursor-pointer"
