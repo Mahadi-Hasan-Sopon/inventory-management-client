@@ -4,10 +4,11 @@ import StripeCheckoutForm from "./StripeCheckoutForm";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
-const Stripe = () => {
+// eslint-disable-next-line react/prop-types
+const Stripe = ({ selectedPlan }) => {
   return (
     <Elements stripe={stripePromise}>
-      <StripeCheckoutForm />
+      <StripeCheckoutForm selectedPlan={selectedPlan} />
     </Elements>
   );
 };

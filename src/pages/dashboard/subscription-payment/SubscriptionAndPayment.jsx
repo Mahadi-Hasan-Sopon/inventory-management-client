@@ -1,6 +1,9 @@
+import { useState } from "react";
 import Stripe from "./stripePaymentSystem/Stripe";
 
 const SubscriptionAndPayment = () => {
+  const [selectedPlan, setSelectedPlan] = useState({ name: "", price: 0, productLimit: 3 });
+
   return (
     <div>
       <h1 className="text-3xl font-bold"> Subscription and Payment</h1>
@@ -113,9 +116,14 @@ const SubscriptionAndPayment = () => {
                 </li>
               </ul>
               <button
-                onClick={() =>
-                  document.getElementById("purchaseModal").showModal()
-                }
+                onClick={() => {
+                  document.getElementById("purchaseModal").showModal();
+                  setSelectedPlan({
+                    name: "Starter",
+                    price: 10,
+                    productLimit: 200,
+                  });
+                }}
                 className="text-slate-50 bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
               >
                 Purchase
@@ -218,9 +226,14 @@ const SubscriptionAndPayment = () => {
                 </li>
               </ul>
               <button
-                onClick={() =>
-                  document.getElementById("purchaseModal").showModal()
-                }
+                onClick={() => {
+                  document.getElementById("purchaseModal").showModal();
+                  setSelectedPlan({
+                    name: "Company",
+                    price: 20,
+                    productLimit: 450,
+                  });
+                }}
                 className="text-white bg-[#FE9F43] hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
               >
                 Purchase
@@ -323,9 +336,14 @@ const SubscriptionAndPayment = () => {
                 </li>
               </ul>
               <button
-                onClick={() =>
-                  document.getElementById("purchaseModal").showModal()
-                }
+                onClick={() => {
+                  document.getElementById("purchaseModal").showModal();
+                  setSelectedPlan({
+                    name: "Enterprise",
+                    price: 50,
+                    productLimit: 1500,
+                  });
+                }}
                 className="text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
               >
                 Purchase
@@ -336,7 +354,7 @@ const SubscriptionAndPayment = () => {
       </section>
       <dialog id="purchaseModal" className="modal bg-black/80">
         <div className="modal-box w-full max-w-2xl">
-          <Stripe />
+          <Stripe selectedPlan={selectedPlan} />
         </div>
       </dialog>
     </div>

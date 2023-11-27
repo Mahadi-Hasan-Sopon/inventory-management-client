@@ -1,13 +1,34 @@
+/* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { axiosSecure } from "../../../../hooks/useAxios";
+import useAuth from "../../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
-const StripeCheckoutForm = () => {
+const StripeCheckoutForm = ({ selectedPlan }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useAuth();
+
   const [isError, setIsError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+
+//   console.log(selectedPlan, " in checkout form");
+
+  useEffect(() => {
+    if (selectedPlan.price == 0) return;
+    axiosSecure
+      .post("/create-payment-intent", { price: parseFloat(selectedPlan.price) })
+      .then((res) => {
+        //   console.log(res.data);
+        setClientSecret(res.data?.clientSecret);
+      });
+  }, [selectedPlan.price]);
 
   const handleCheckoutSubmit = async (event) => {
     event.preventDefault();
+
+    const loadingToast = toast.loading("Trying to pay, please wait....");
 
     if (!stripe || !elements) {
       return;
@@ -31,6 +52,31 @@ const StripeCheckoutForm = () => {
     } else {
       console.log("[PaymentMethod]", paymentMethod);
       setIsError("");
+      document.getElementById("purchaseModal").close();
+    }
+
+    // confirm payment
+    const { paymentIntent, error: paymentConfirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName,
+            email: user?.email,
+          },
+        },
+      });
+
+    if (paymentConfirmError) {
+      console.log({ paymentConfirmError });
+    } else {
+      console.log({ paymentIntent });
+      document.getElementById("purchaseModal").close();
+      if (paymentIntent.status === "succeeded") {
+        toast.success("Payment Successful. Product limit increased...", {
+          id: loadingToast,
+        });
+      }
     }
   };
 
@@ -60,7 +106,7 @@ const StripeCheckoutForm = () => {
           <button
             type="submit"
             className="btn px-16 py-2 mt-4 text-lg bg-blue-600 text-white text-center"
-            disabled={!stripe}
+            disabled={!stripe || !clientSecret}
           >
             Pay
           </button>
