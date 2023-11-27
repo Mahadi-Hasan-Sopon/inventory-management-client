@@ -80,6 +80,13 @@ const StripeCheckoutForm = ({ selectedPlan }) => {
         // console.log(result.data, "in successful payment");
         if (result.data?.modifiedCount > 0) {
           toast.success("Product Limit increased.");
+          const adminIncome = await axiosSecure.patch("/admin/increaseIncome", {
+            income: selectedPlan.price,
+          });
+          // console.log(adminIncome.data);
+          if (adminIncome.data?.modifiedCount > 0) {
+            toast.success("Admin Income added.");
+          }
         }
         toast.success("Payment Successful", {
           id: loadingToast,
