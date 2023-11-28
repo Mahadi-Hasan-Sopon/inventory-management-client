@@ -6,7 +6,6 @@ import CreateShop from "../pages/createShop/CreateShop";
 import WatchDemo from "../pages/watchDemo/WatchDemo";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
-import Dashboard from "../pages/dashboard/Dashboard";
 import ProductManagement from "../pages/dashboard/product-management/ProductManagement";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Products from "../pages/dashboard/products/Products";
@@ -50,15 +49,8 @@ const routes = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: (
-          <PrivateRoutes>
-            <Dashboard />
-          </PrivateRoutes>
-        ),
-      },
       {
         path: "product-management",
         element: (
@@ -118,7 +110,7 @@ const routes = createBrowserRouter([
             <SalesSummary />
           </PrivateRoutes>
         ),
-        loader: () => axiosSecure.get("/sales")
+        loader: () => axiosSecure.get("/sales"),
       },
       {
         path: "product/update/:productId",
