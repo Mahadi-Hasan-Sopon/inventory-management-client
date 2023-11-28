@@ -9,7 +9,7 @@ import {
   MdShoppingCart,
 } from "react-icons/md";
 import { FaBarsStaggered, FaAnglesLeft } from "react-icons/fa6";
-import { RxCube, RxDashboard } from "react-icons/rx";
+import { RxCube } from "react-icons/rx";
 import { SiGoogletagmanager } from "react-icons/si";
 import { BsStack } from "react-icons/bs";
 import toast from "react-hot-toast";
@@ -110,14 +110,14 @@ const DashboardNavItems = () => {
             isPending
               ? "text-slate-500 font-medium p-2 block"
               : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/20 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block bg-transparent"
+              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+              : "text-slate-500 font-medium p-2 block"
           }
-          to="/dashboard"
-          end
+          to="/dashboard/sales-summary"
         >
           <div className="flex gap-2 items-center">
-            <RxDashboard /> <span className="block">Dashboard</span>
+            <MdOutlineSummarize />
+            <span className="block">Sales Summary</span>
           </div>
         </NavLink>
       </li>
@@ -223,23 +223,7 @@ const DashboardNavItems = () => {
           </div>
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/sales-summary"
-        >
-          <div className="flex gap-2 items-center">
-            <MdOutlineSummarize />
-            <span className="block">Sales Summary</span>
-          </div>
-        </NavLink>
-      </li>
+
       <li>
         <NavLink
           className={({ isActive, isPending }) =>

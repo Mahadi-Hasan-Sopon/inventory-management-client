@@ -1,6 +1,7 @@
 import { axiosSecure } from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 const Checkout = () => {
   // const loadedProducts = useLoaderData();
@@ -49,6 +50,9 @@ const Checkout = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Inventory || Checkout</title>
+      </Helmet>
       <div className="flex justify-between w-full pe-4">
         <h1 className="text-3xl font-bold">
           Checkout: {loadedProducts?.data?.length}

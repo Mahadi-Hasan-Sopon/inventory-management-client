@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const CheckoutCart = () => {
@@ -5,6 +6,9 @@ const CheckoutCart = () => {
   // console.log(loadedProducts?.data)
   return (
     <div>
+      <Helmet>
+        <title>Inventory || Checkout Cart</title>
+      </Helmet>
       <div className="flex justify-between w-full pe-4">
         <h1 className="text-3xl font-bold">
           Checkout Cart: {loadedProducts?.data?.length}

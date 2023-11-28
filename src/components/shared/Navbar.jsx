@@ -59,7 +59,7 @@ const Navbar = () => {
                 ? "font-medium bg-base-100 text-blue-500"
                 : ""
             }
-            to="/dashboard"
+            to="/dashboard/sales-summary"
           >
             Dashboard
           </NavLink>

@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { axiosSecure } from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const SalesCollection = () => {
   const loadedProducts = useLoaderData();
@@ -70,6 +71,7 @@ const SalesCollection = () => {
 
   return (
     <div>
+      <Helmet><title>Inventory || Sales Collection</title></Helmet>
       <div className="flex justify-between pe-4 pb-6">
         <h1 className="text-3xl font-bold w-full">
           Sales Collection {products?.length}

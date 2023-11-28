@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import uploadImage from "../../utils/uploadImage/uploadImage";
 import { axiosSecure } from "../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const CreateShop = () => {
   const { user, loading } = useAuth();
@@ -82,6 +83,9 @@ const CreateShop = () => {
 
   return (
     <div className="py-6">
+      <Helmet>
+        <title>Inventory || Create Shop</title>
+      </Helmet>
       <form
         onSubmit={handleCreateShop}
         className="bg-slate-100 dark:bg-base-200 py-4 md:py-10 px-4 md:px-10 rounded"

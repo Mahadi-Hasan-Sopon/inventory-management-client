@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Stripe from "./stripePaymentSystem/Stripe";
+import { Helmet } from "react-helmet";
 
 const SubscriptionAndPayment = () => {
   const [selectedPlan, setSelectedPlan] = useState({
@@ -10,6 +11,9 @@ const SubscriptionAndPayment = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Inventory || Subscription</title>
+      </Helmet>
       <h1 className="text-3xl font-bold"> Subscription and Payment</h1>
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 mx-auto max-w-screen-xl lg:py-16 lg:px-6">

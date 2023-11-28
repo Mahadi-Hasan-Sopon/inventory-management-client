@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import uploadImage from "../../../utils/uploadImage/uploadImage";
 import { axiosSecure } from "../../../hooks/useAxios";
+import { Helmet } from "react-helmet";
 
 const UpdateProduct = () => {
   const product = useLoaderData();
@@ -80,13 +81,16 @@ const UpdateProduct = () => {
         id: loadingToast,
       });
     }
-    };
-    
+  };
+
   return (
     <form
       onSubmit={handleUpdateProduct}
       className="bg-slate-100 dark:bg-base-200 py-4 md:py-10 px-4 md:px-10 rounded"
     >
+      <Helmet>
+        <title>Inventory || Update Product</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-slate-700 dark:text-slate-500 text-center mb-6">
         Update Product Info
       </h1>

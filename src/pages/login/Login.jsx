@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { signInWithGoogle, loginWithEmail } = useAuth();
@@ -40,6 +41,9 @@ const Login = () => {
 
   return (
     <div className="bg-gray-50 h-[calc(100vh-80px)]">
+      <Helmet>
+        <title>Inventory || Login</title>
+      </Helmet>
       <div className="flex flex-col items-center justify-center pt-4 w-full h-full">
         <h3 className="text-4xl font-bold text-purple-600">
           Welcome Back, Login Now!

@@ -1,5 +1,3 @@
-// import { useQuery } from "@tanstack/react-query";
-// import { axiosSecure } from "../../../hooks/useAxios";
 import { useLoaderData } from "react-router-dom";
 import { IoBagCheck } from "react-icons/io5";
 import { BiMoney, BiCartDownload } from "react-icons/bi";
@@ -7,10 +5,13 @@ import SalesChart from "./SalesChart";
 import { axiosSecure } from "../../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import RecentSales from "./RecentSales";
+import { Helmet } from "react-helmet";
 
 const SalesSummary = () => {
   const allSales = useLoaderData();
-  console.log(allSales?.data);
+  // console.log(allSales?.data);
+
+ 
 
   const salesDetails = useQuery({
     queryKey: ["salesSummary"],
@@ -41,6 +42,9 @@ const SalesSummary = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Inventory || Sales Summary</title>
+      </Helmet>
       <h1 className="text-3xl font-bold"> Sales Summary</h1>
       <div className="divider my-2"></div>
       <div className="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 justify-center sm:justify-between items-center gap-6 my-6 me-4">

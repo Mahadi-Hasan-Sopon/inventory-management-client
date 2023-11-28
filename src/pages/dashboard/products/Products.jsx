@@ -4,6 +4,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 const Products = () => {
   const { data: loadedProducts, refetch } = useQuery({
     queryKey: ["products"],
@@ -42,6 +43,9 @@ const Products = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Inventory || Products</title>
+      </Helmet>
       <h1 className="text-3xl font-bold text-center mb-6">Products</h1>
 
       <div className="overflow-x-auto">

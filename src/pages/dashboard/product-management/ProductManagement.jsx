@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import uploadImage from "../../../utils/uploadImage/uploadImage";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../../hooks/useAxios";
+import { Helmet } from "react-helmet";
 
 const ProductManagement = () => {
   const products = useLoaderData();
@@ -89,6 +90,9 @@ const ProductManagement = () => {
 
   return (
     <div className="w-full">
+      <Helmet>
+        <title>Inventory || Product Management</title>
+      </Helmet>
       {products?.data?.length === 0 ? (
         <div className="flex flex-col justify-center gap-4 items-center h-[80vh]">
           <h2 className="text-2xl font-bold text-center">

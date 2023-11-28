@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import uploadImage from "../../utils/uploadImage/uploadImage";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosPublic } from "../../hooks/useAxios";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const { createUserWithEmail, updateUserProfile } = useAuth();
@@ -68,6 +69,9 @@ const Register = () => {
 
   return (
     <div className="bg-gray-50 h-[calc(100vh-80px)]">
+      <Helmet>
+        <title>Inventory || Register</title>
+      </Helmet>
       <div className="flex flex-col items-center pt-4 justify-center h-full">
         <h3 className="text-4xl font-bold text-purple-600">Register Now!</h3>
 
