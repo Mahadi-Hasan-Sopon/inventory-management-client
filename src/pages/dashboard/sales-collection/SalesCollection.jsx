@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { axiosSecure } from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
+import useAuth from "../../../hooks/useAuth";
 
 const SalesCollection = () => {
   const loadedProducts = useLoaderData();
+  const { user } = useAuth();
 
   const [products, setProducts] = useState(loadedProducts.data);
 
@@ -44,6 +46,7 @@ const SalesCollection = () => {
       sellingPrice: product.sellingPrice,
       salesCount: product.salesCount,
       createdAt: product.createdAt,
+      soldBy: { email: user?.email, name: user?.displayName },
       productId: productId,
     };
 

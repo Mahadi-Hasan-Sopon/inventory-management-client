@@ -2,7 +2,11 @@ import { useState } from "react";
 import Stripe from "./stripePaymentSystem/Stripe";
 
 const SubscriptionAndPayment = () => {
-  const [selectedPlan, setSelectedPlan] = useState({ name: "", price: 0, productLimit: 3 });
+  const [selectedPlan, setSelectedPlan] = useState({
+    name: "",
+    price: 0,
+    productLimit: 3,
+  });
 
   return (
     <div>
@@ -115,6 +119,7 @@ const SubscriptionAndPayment = () => {
                   </span>
                 </li>
               </ul>
+              <div className="flex-grow"></div>
               <button
                 onClick={() => {
                   document.getElementById("purchaseModal").showModal();
@@ -225,6 +230,7 @@ const SubscriptionAndPayment = () => {
                   </span>
                 </li>
               </ul>
+              <div className="flex-grow"></div>
               <button
                 onClick={() => {
                   document.getElementById("purchaseModal").showModal();
@@ -335,6 +341,7 @@ const SubscriptionAndPayment = () => {
                   </span>
                 </li>
               </ul>
+              <div className="flex-grow"></div>
               <button
                 onClick={() => {
                   document.getElementById("purchaseModal").showModal();
