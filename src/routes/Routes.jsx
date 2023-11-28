@@ -118,6 +118,7 @@ const routes = createBrowserRouter([
             <SalesSummary />
           </PrivateRoutes>
         ),
+        loader: () => axiosSecure.get("/sales")
       },
       {
         path: "product/update/:productId",

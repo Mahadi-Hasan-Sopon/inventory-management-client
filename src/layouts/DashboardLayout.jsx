@@ -15,6 +15,7 @@ import { BsStack } from "react-icons/bs";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
+import Footer from "../components/shared/Footer";
 
 const DashboardLayout = () => {
   const [checked, setChecked] = useState(false);
@@ -32,7 +33,7 @@ const DashboardLayout = () => {
           />
           <div className="drawer-content flex flex-col">
             {/* Page content here */}
-            <div className="flex justify-between gap-6 w-full md:hidden">
+            <div className="flex justify-between gap-6 w-full md:hidden px-4">
               <label htmlFor="my-drawer-2" className="drawer-button">
                 <FaBarsStaggered
                   className="text-2xl my-2 block cursor-pointer"
@@ -44,9 +45,10 @@ const DashboardLayout = () => {
                 <span className="block text-2xl">Inventory</span>
               </div>
             </div>
-            <div className="ps-4 py-6">
+            <div className="px-4 py-6">
               <Outlet />
             </div>
+            <Footer />
           </div>
           <div className="drawer-side">
             <label
@@ -57,7 +59,11 @@ const DashboardLayout = () => {
             <div className="py-6 ps-2 w-64 min-h-full border-r border-r-[#E8EBED] bg-white">
               {/* Sidebar content here */}
               <div className="flex flex-col gap-3 list-none text-xl relative">
-                <div className="md:hidden flex absolute -right-5 top-4 justify-end items-center">
+                <div
+                  className={`${
+                    !checked && "hidden"
+                  } md:hidden flex absolute -right-4 bg-white p-2 rounded-full top-4 justify-end items-center`}
+                >
                   <FaAnglesLeft
                     className="text-2xl block text-red-700 cursor-pointer"
                     onClick={() => setChecked(!checked)}
