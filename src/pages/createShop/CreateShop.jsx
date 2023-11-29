@@ -35,8 +35,12 @@ const CreateShop = () => {
     return navigate("/login");
   }
 
-  if ((!loading && hasShop) || (!loading && isAdmin)) {
+  if (!loading && hasShop && !isAdmin) {
     return <Navigate to="/dashboard/sales-summary" />;
+  }
+
+  if (!loading && isAdmin) {
+    return <Navigate to="/dashboard/admin/sales-summary" />;
   }
 
   const handleCreateShop = async (e) => {

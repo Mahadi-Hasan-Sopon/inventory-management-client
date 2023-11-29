@@ -25,10 +25,10 @@ const Login = () => {
         toast.error("Login failed!", { id: loadingToast });
       }
 
-      if (response.user && hasShop) {
+      if (response.user && hasShop && !isAdmin) {
         navigate("/dashboard/sales-summary");
       } else if (response.user && isAdmin) {
-        return navigate("/dashboard/sales-summary");
+        return navigate("/dashboard/admin/sales-summary");
       } else {
         navigate("/create-shop");
       }
