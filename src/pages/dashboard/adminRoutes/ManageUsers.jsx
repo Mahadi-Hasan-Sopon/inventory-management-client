@@ -12,41 +12,17 @@ const ManageUsers = ({ itemsPerPage = 3 }) => {
     queryFn: () => axiosSecure.get("/admin/allUser").then((res) => res.data),
   });
 
-  console.log({ users });
+  // console.log({ users });
 
   // calculate index of users to show current page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = users?.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   const totalPages = Math.ceil(users.length / itemsPerPage);
-
-  /***
- * email
-: 
-"john@gmail.com"
-image
-: 
-"https://i.ibb.co/gdqxKTt/avator1.jpg"
-name
-: 
-"John Due"
-role
-: 
-"manager"
-shopId
-: 
-"65622789046e1c48d3ec315c"
-shopLogo
-: 
-"https://i.ibb.co/2YxQ9TY/logo3.webp"
-shopName
-: 
-"KC Trading"
- */
 
   return (
     <div>
