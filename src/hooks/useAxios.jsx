@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://inventory-management-server-chi.vercel.app",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 export const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://inventory-management-server-chi.vercel.app",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
