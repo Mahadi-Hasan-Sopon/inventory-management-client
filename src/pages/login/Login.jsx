@@ -1,13 +1,14 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import useHasShop from "../../hooks/useHasShop";
 
 const Login = () => {
   const { signInWithGoogle, loginWithEmail } = useAuth();
+  const { hasShop } = useHasShop();
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,9 +23,13 @@ const Login = () => {
         toast.error("Login failed!", { id: loadingToast });
       }
 
+      if (response.user && hasShop) {
+        navigate("/dashboard/sales-summary");
+      } else {
+        navigate("/create-shop");
+      }
       // console.log(response.user);
       toast.success("Login Successful", { id: loadingToast });
-      navigate(location?.state || "/");
     } catch (error) {
       toast.error(error?.message, { id: loadingToast });
     }
@@ -34,7 +39,11 @@ const Login = () => {
     return signInWithGoogle()
       .then((res) => {
         toast.success(`Welcome, ${res.user?.displayName}`);
-        navigate(location?.state || "/");
+        if (res.user && hasShop) {
+          navigate("/dashboard/sales-summary");
+        } else {
+          navigate("/create-shop");
+        }
       })
       .catch((err) => toast.error(err?.message));
   };
