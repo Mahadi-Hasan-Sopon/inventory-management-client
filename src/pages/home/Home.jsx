@@ -187,6 +187,36 @@ const Home = () => {
           </div>
         </div>
       </Container>
+
+      <div className="show-case w-full bg-[url(https://i.ibb.co/rb49Yvp/vertical-cloud.jpg)] bg-no-repeat object-cover bg-cover min-h-[60vh] flex xl:justify-end justify-center items-center">
+        <div className="bg-gray-950/40 text-white xl:bg-transparent min-h-[40vh] w-full sm:w-1/2 text-center py-10 xl:w-1/3 ps-4 flex flex-col gap-4 items-center justify-center sm:mr-10">
+          <h2 className="text-3xl">
+            Simple and easy <br /> cloud pos for your store
+          </h2>
+          <h4 className="text-xl font-bold">
+            Now, {`it's "sign-up, set-up & serve"`}
+          </h4>
+          <button className="text-white bg-[#f0493f] rounded-full px-12 py-3 font-bold">
+            Sign Up for Free
+          </button>
+        </div>
+      </div>
+      <div className="news-latter bg-[#FE9F43] w-full flex justify-center items-center gap-10 py-12">
+        <h2 className="text-4xl font-bold text-white">
+          Subscribe To Our NewsLetters
+        </h2>
+        <div className="flex">
+          <input
+            type="email"
+            name="news-letter"
+            className="block bg-white text-slate-600 max-w-md min-w-full p-3 text-xl font-medium rounded-s placeholder:text-xl"
+            placeholder="Enter your Email"
+          />
+          <button className="py-3 px-3 hover:cursor-pointer rounded-e font-semibold text-lg bg-white">
+            Subscribe
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
