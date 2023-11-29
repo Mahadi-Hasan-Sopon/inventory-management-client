@@ -3,10 +3,12 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import useHasShop from "../../hooks/useHasShop";
+import useAdmin from "../../hooks/useAdmin";
 
 const Login = () => {
   const { signInWithGoogle, loginWithEmail } = useAuth();
   const { hasShop } = useHasShop();
+  const { isAdmin } = useAdmin();
 
   const navigate = useNavigate();
 
@@ -25,6 +27,8 @@ const Login = () => {
 
       if (response.user && hasShop) {
         navigate("/dashboard/sales-summary");
+      } else if (response.user && isAdmin) {
+        return navigate("/dashboard/sales-summary");
       } else {
         navigate("/create-shop");
       }

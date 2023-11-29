@@ -5,9 +5,11 @@ import { axiosSecure } from "../../hooks/useAxios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import useHasShop from "../../hooks/useHasShop";
+import useAdmin from "../../hooks/useAdmin";
 
 const CreateShop = () => {
   const { user, loading } = useAuth();
+  const { isAdmin } = useAdmin();
   const { hasShop } = useHasShop();
   const navigate = useNavigate();
 
@@ -29,7 +31,7 @@ const CreateShop = () => {
       </div>
     );
 
-  if (!loading && hasShop) {
+  if ((!loading && hasShop) || (!loading && isAdmin)) {
     return <Navigate to="/dashboard/sales-summary" />;
   }
 
