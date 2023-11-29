@@ -11,7 +11,9 @@ import {
 import { FaBarsStaggered, FaAnglesLeft } from "react-icons/fa6";
 import { RxCube } from "react-icons/rx";
 import { SiGoogletagmanager } from "react-icons/si";
-import { BsStack } from "react-icons/bs";
+import { BsShop, BsStack } from "react-icons/bs";
+import { PiUsersFourFill } from "react-icons/pi";
+
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
@@ -49,7 +51,7 @@ const DashboardNavItems = () => {
               to="/dashboard/admin/sales-summary"
             >
               <div className="flex gap-2 items-center">
-                <MdOutlineSummarize />
+                <MdOutlineSummarize className="text-2xl" />
                 <span className="block">Sales Summary</span>
               </div>
             </NavLink>
@@ -66,8 +68,25 @@ const DashboardNavItems = () => {
               to="/dashboard/admin/manage-shops"
             >
               <div className="flex gap-2 items-center">
-                <SiGoogletagmanager />
+                <BsShop className="text-2xl" />
                 <span className="block">Manage Shops</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/admin/manage-users"
+            >
+              <div className="flex gap-2 items-center">
+                <PiUsersFourFill className="text-2xl" />
+                <span className="block">Manage Users</span>
               </div>
             </NavLink>
           </li>
@@ -83,7 +102,7 @@ const DashboardNavItems = () => {
               to="/"
             >
               <div className="flex gap-2 items-center">
-                <MdHome />
+                <MdHome className="text-2xl" />
                 <span className="block">Home</span>
               </div>
             </NavLink>
@@ -124,7 +143,7 @@ const DashboardNavItems = () => {
               to="/dashboard/sales-summary"
             >
               <div className="flex gap-2 items-center">
-                <MdOutlineSummarize />
+                <MdOutlineSummarize className="text-2xl" />
                 <span className="block">Sales Summary</span>
               </div>
             </NavLink>
@@ -141,7 +160,7 @@ const DashboardNavItems = () => {
               to="/dashboard/product-management"
             >
               <div className="flex gap-2 items-center">
-                <SiGoogletagmanager />
+                <SiGoogletagmanager className="text-2xl" />
                 <span className="block">Manage Product</span>
               </div>
             </NavLink>
@@ -158,7 +177,7 @@ const DashboardNavItems = () => {
               to="/dashboard/products"
             >
               <div className="flex gap-2 items-center">
-                <RxCube />
+                <RxCube className="text-2xl" />
                 <span className="block">Products</span>
               </div>
             </NavLink>
@@ -175,7 +194,7 @@ const DashboardNavItems = () => {
               to="/dashboard/sales-collection"
             >
               <div className="flex gap-2 items-center">
-                <BsStack />
+                <BsStack className="text-2xl" />
                 <span className="block">Sales Collection</span>
               </div>
             </NavLink>
@@ -192,7 +211,7 @@ const DashboardNavItems = () => {
               to="/dashboard/cart"
             >
               <div className="flex gap-2 items-center">
-                <MdShoppingCart />
+                <MdShoppingCart className="text-2xl" />
                 <span className="block">Cart</span>
               </div>
             </NavLink>
@@ -209,7 +228,7 @@ const DashboardNavItems = () => {
               to="/dashboard/checkout"
             >
               <div className="flex gap-2 items-center">
-                <MdOutlineShoppingCartCheckout />
+                <MdOutlineShoppingCartCheckout className="text-2xl" />
                 <span className="block">Checkout</span>
               </div>
             </NavLink>
@@ -226,7 +245,7 @@ const DashboardNavItems = () => {
               to="/dashboard/subscription"
             >
               <div className="flex gap-2 items-center">
-                <MdOutlinePayment />
+                <MdOutlinePayment className="text-2xl" />
                 <span className="block">Subscription</span>
               </div>
             </NavLink>
@@ -244,7 +263,7 @@ const DashboardNavItems = () => {
               to="/"
             >
               <div className="flex gap-2 items-center">
-                <MdHome />
+                <MdHome className="text-2xl" />
                 <span className="block">Home</span>
               </div>
             </NavLink>

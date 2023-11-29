@@ -28,7 +28,7 @@ const AdminSalesSummary = () => {
           </div>
           <div className="space-y-1">
             <h2 className="text-2xl font-bold">${allSales?.totalSales}</h2>
-            <p className="text-sm font-normal">Total Sales </p>
+            <p className="text-sm font-normal">Total Product Sales </p>
           </div>
         </div>
         {/* Total Profit */}

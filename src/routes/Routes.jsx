@@ -20,6 +20,7 @@ import CheckoutCart from "../pages/dashboard/checkout/CheckoutCart";
 import AdminRoutes from "./AdminRoutes";
 import AdminSalesSummary from "../pages/dashboard/adminRoutes/AdminSalesSummary";
 import ManageShops from "../pages/dashboard/adminRoutes/ManageShops";
+import ManageUsers from "../pages/dashboard/adminRoutes/ManageUsers";
 
 const routes = createBrowserRouter([
   {
@@ -67,6 +68,14 @@ const routes = createBrowserRouter([
         element: (
           <AdminRoutes>
             <ManageShops />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "admin/manage-users",
+        element: (
+          <AdminRoutes>
+            <ManageUsers />
           </AdminRoutes>
         ),
       },
