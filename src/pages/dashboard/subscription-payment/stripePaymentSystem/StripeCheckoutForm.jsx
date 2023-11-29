@@ -72,12 +72,12 @@ const StripeCheckoutForm = ({ selectedPlan }) => {
       toast.error(paymentConfirmError?.message, { id: loadingToast });
     } else {
       console.log({ paymentIntent });
-      document.getElementById("purchaseModal").close();
+      // document.getElementById("purchaseModal").close();
       if (paymentIntent.status === "succeeded") {
         const result = await axiosSecure.put("/shops/increaseProductLimit", {
           productLimit: selectedPlan.productLimit,
         });
-        // console.log(result.data, "in successful payment");
+        console.log(result.data, "in successful payment");
         if (result.data?.modifiedCount > 0) {
           toast.success("Product Limit increased.");
           const adminIncome = await axiosSecure.put("/admin/increaseIncome", {
