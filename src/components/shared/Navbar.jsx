@@ -11,7 +11,7 @@ const Navbar = () => {
   const { isAdmin } = useAdmin();
   const { hasShop } = useHasShop();
 
-  console.log({ isAdmin, hasShop });
+  // console.log({ isAdmin, hasShop });
 
   const handleLogOut = () => {
     logOutUser()

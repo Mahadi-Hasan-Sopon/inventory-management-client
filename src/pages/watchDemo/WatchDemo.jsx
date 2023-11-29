@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 
 const WatchDemo = () => {
   return (
-    <div>
+    <div className="min-h-[60vh] flex flex-col justify-center items-center">
       <Helmet>
         <title>Inventory || Watch Demo</title>
       </Helmet>

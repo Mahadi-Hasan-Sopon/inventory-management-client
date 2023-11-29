@@ -42,7 +42,7 @@ const Products = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[62vh]">
       <Helmet>
         <title>Inventory || Products</title>
       </Helmet>

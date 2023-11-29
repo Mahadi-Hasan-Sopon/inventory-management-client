@@ -10,7 +10,7 @@ const SubscriptionAndPayment = () => {
   });
 
   return (
-    <div>
+    <div className="min-h-[62vh]">
       <Helmet>
         <title>Inventory || Subscription</title>
       </Helmet>

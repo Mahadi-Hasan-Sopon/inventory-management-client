@@ -38,7 +38,7 @@ const SalesSummary = () => {
     .sort((a, b) => new Date(b.soldAt) - new Date(a.soldAt));
 
   return (
-    <div>
+    <div className="min-h-[62vh]">
       <Helmet>
         <title>Inventory || Sales Summary</title>
       </Helmet>
