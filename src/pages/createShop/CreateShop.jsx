@@ -2,12 +2,13 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import uploadImage from "../../utils/uploadImage/uploadImage";
 import { axiosSecure } from "../../hooks/useAxios";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import useHasShop from "../../hooks/useHasShop";
 
 const CreateShop = () => {
   const { user, loading } = useAuth();
-
+  const { hasShop } = useHasShop();
   const navigate = useNavigate();
 
   if (loading)
@@ -27,6 +28,10 @@ const CreateShop = () => {
         </div>
       </div>
     );
+
+  if (!loading && hasShop) {
+    return <Navigate to="/dashboard/sales-summary" />;
+  }
 
   const handleCreateShop = async (e) => {
     e.preventDefault();
