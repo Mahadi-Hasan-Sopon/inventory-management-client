@@ -32,7 +32,7 @@ const CreateShop = () => {
     );
 
   if (!loading && !user) {
-    return navigate("/login");
+    return <Navigate to="/login" />;
   }
 
   if (!loading && hasShop && !isAdmin) {
