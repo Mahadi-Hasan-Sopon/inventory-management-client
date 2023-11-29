@@ -2,16 +2,23 @@ import { axiosSecure } from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
+import jsPDF from "jspdf";
+import useAuth from "../../../hooks/useAuth";
 
 const Checkout = () => {
   // const loadedProducts = useLoaderData();
   // console.log(loadedProducts?.data)
+  const { user } = useAuth();
 
   const { data: loadedProducts, refetch } = useQuery({
     queryKey: ["checkoutProducts"],
     queryFn: async () =>
       await axiosSecure.get("/carts").then((res) => res.data),
   });
+
+  const pdf = new jsPDF();
+
+  // console.log(loadedProducts)
 
   const handleGetPaidClick = async () => {
     const loadingToast = toast.loading("Adding to Sales Collection.");
@@ -24,6 +31,26 @@ const Checkout = () => {
         toast.success("Product Added to Sales Collection.", {
           id: `${loadingToast}-1`,
         });
+      }
+
+      if (response.status === 200) {
+        pdf.setProperties({
+          title: "Sales",
+          subject: "Invoice",
+          author: user?.displayName,
+        });
+        pdf.text("Invoice", 50, 10);
+        let yPosition = 20;
+        loadedProducts.forEach((product, index) => {
+          yPosition += 10;
+          pdf.text(`Product ${index + 1}`, 20, yPosition);
+          yPosition += 5;
+          pdf.text(`Title: ${product.productName}`, 30, yPosition);
+          pdf.text(`Price: ${product.sellingPrice}`, 30, yPosition + 5);
+          yPosition += 10;
+        });
+        pdf.autoPrint();
+        pdf.save("Invoice.pdf");
       }
 
       if (response?.data?.updateStatus?.length > 0) {
