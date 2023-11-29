@@ -31,6 +31,10 @@ const CreateShop = () => {
       </div>
     );
 
+  if (!loading && !user) {
+    return navigate("/login");
+  }
+
   if ((!loading && hasShop) || (!loading && isAdmin)) {
     return <Navigate to="/dashboard/sales-summary" />;
   }
