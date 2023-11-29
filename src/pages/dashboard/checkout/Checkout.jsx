@@ -76,7 +76,7 @@ const Checkout = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[62vh]">
       <Helmet>
         <title>Inventory || Checkout</title>
       </Helmet>
@@ -84,7 +84,11 @@ const Checkout = () => {
         <h1 className="text-3xl font-bold">
           Checkout: {loadedProducts?.data?.length}
         </h1>
-        <button className="btn btn-info text-base" onClick={handleGetPaidClick}>
+        <button
+          disabled={loadedProducts?.length < 1}
+          className="btn btn-info text-base"
+          onClick={handleGetPaidClick}
+        >
           Get Paid
         </button>
       </div>

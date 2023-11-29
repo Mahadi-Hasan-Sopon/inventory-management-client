@@ -3,9 +3,9 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const CheckoutCart = () => {
   const loadedProducts = useLoaderData();
-  // console.log(loadedProducts?.data)
+  console.log(loadedProducts?.data);
   return (
-    <div>
+    <div className="min-h-[62vh]">
       <Helmet>
         <title>Inventory || Checkout Cart</title>
       </Helmet>
@@ -13,9 +13,12 @@ const CheckoutCart = () => {
         <h1 className="text-3xl font-bold">
           Checkout Cart: {loadedProducts?.data?.length}
         </h1>
-        <Link to="/dashboard/checkout" className="btn btn-success text-base">
-          Proceed Checkout
-        </Link>
+        <button
+          className="btn btn-success text-base"
+          disabled={loadedProducts.data.length < 1}
+        >
+          <Link to="/dashboard/checkout">Proceed Checkout</Link>
+        </button>
       </div>
       <div className="divider my-1"></div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
