@@ -16,6 +16,265 @@ import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
 import Footer from "../components/shared/Footer";
+import useAdmin from "../hooks/useAdmin";
+
+const DashboardNavItems = () => {
+  const { logOutUser, user } = useAuth();
+  const { isAdmin } = useAdmin();
+
+  const handleImageError = (e) => {
+    e.target.src = "https://i.ibb.co/ZXScD70/avatar.png";
+  };
+
+  const handleLogOut = () => {
+    logOutUser()
+      .then(() => {
+        toast.success("User Logged Out.");
+      })
+      .catch((err) => toast.error(err?.message));
+  };
+  return (
+    <>
+      {isAdmin ? (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/admin/sales-summary"
+            >
+              <div className="flex gap-2 items-center">
+                <MdOutlineSummarize />
+                <span className="block">Sales Summary</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/admin/manage-shops"
+            >
+              <div className="flex gap-2 items-center">
+                <SiGoogletagmanager />
+                <span className="block">Manage Shops</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/"
+            >
+              <div className="flex gap-2 items-center">
+                <MdHome />
+                <span className="block">Home</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <div className="flex items-center gap-4 p-2">
+              <div className="avatar flex-col justify-center items-center">
+                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    className="w-full h-full"
+                    src={user?.photoURL}
+                    onError={handleImageError}
+                  />
+                </div>
+              </div>
+
+              <button
+                onClick={handleLogOut}
+                type="button"
+                className="btn btn-outline btn-error py-3 px-5 h-auto min-h-fit font-medium"
+              >
+                LogOut
+              </button>
+            </div>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/sales-summary"
+            >
+              <div className="flex gap-2 items-center">
+                <MdOutlineSummarize />
+                <span className="block">Sales Summary</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/product-management"
+            >
+              <div className="flex gap-2 items-center">
+                <SiGoogletagmanager />
+                <span className="block">Manage Product</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/products"
+            >
+              <div className="flex gap-2 items-center">
+                <RxCube />
+                <span className="block">Products</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/sales-collection"
+            >
+              <div className="flex gap-2 items-center">
+                <BsStack />
+                <span className="block">Sales Collection</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/cart"
+            >
+              <div className="flex gap-2 items-center">
+                <MdShoppingCart />
+                <span className="block">Cart</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/checkout"
+            >
+              <div className="flex gap-2 items-center">
+                <MdOutlineShoppingCartCheckout />
+                <span className="block">Checkout</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/dashboard/subscription"
+            >
+              <div className="flex gap-2 items-center">
+                <MdOutlinePayment />
+                <span className="block">Subscription</span>
+              </div>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "text-slate-500 font-medium p-2 block"
+                  : isActive
+                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
+                  : "text-slate-500 font-medium p-2 block"
+              }
+              to="/"
+            >
+              <div className="flex gap-2 items-center">
+                <MdHome />
+                <span className="block">Home</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <div className="flex items-center gap-4 p-2">
+              <div className="avatar flex-col justify-center items-center">
+                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    className="w-full h-full"
+                    src={user?.photoURL}
+                    onError={handleImageError}
+                  />
+                </div>
+              </div>
+
+              <button
+                onClick={handleLogOut}
+                type="button"
+                className="btn btn-outline btn-error py-3 px-5 h-auto min-h-fit font-medium"
+              >
+                LogOut
+              </button>
+            </div>
+          </li>
+        </>
+      )}
+    </>
+  );
+};
 
 const DashboardLayout = () => {
   const [checked, setChecked] = useState(false);
@@ -87,181 +346,3 @@ const DashboardLayout = () => {
 };
 
 export default DashboardLayout;
-
-const DashboardNavItems = () => {
-  const { logOutUser, user } = useAuth();
-
-  const handleImageError = (e) => {
-    e.target.src = "https://i.ibb.co/ZXScD70/avatar.png";
-  };
-
-  const handleLogOut = () => {
-    logOutUser()
-      .then(() => {
-        toast.success("User Logged Out.");
-      })
-      .catch((err) => toast.error(err?.message));
-  };
-  return (
-    <>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/sales-summary"
-        >
-          <div className="flex gap-2 items-center">
-            <MdOutlineSummarize />
-            <span className="block">Sales Summary</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/product-management"
-        >
-          <div className="flex gap-2 items-center">
-            <SiGoogletagmanager />
-            <span className="block">Manage Product</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/products"
-        >
-          <div className="flex gap-2 items-center">
-            <RxCube />
-            <span className="block">Products</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/sales-collection"
-        >
-          <div className="flex gap-2 items-center">
-            <BsStack />
-            <span className="block">Sales Collection</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/cart"
-        >
-          <div className="flex gap-2 items-center">
-            <MdShoppingCart />
-            <span className="block">Cart</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/checkout"
-        >
-          <div className="flex gap-2 items-center">
-            <MdOutlineShoppingCartCheckout />
-            <span className="block">Checkout</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/dashboard/subscription"
-        >
-          <div className="flex gap-2 items-center">
-            <MdOutlinePayment />
-            <span className="block">Subscription</span>
-          </div>
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "text-slate-500 font-medium p-2 block"
-              : isActive
-              ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-              : "text-slate-500 font-medium p-2 block"
-          }
-          to="/"
-        >
-          <div className="flex gap-2 items-center">
-            <MdHome />
-            <span className="block">Home</span>
-          </div>
-        </NavLink>
-      </li>
-      <li>
-        <div className="flex items-center gap-4 p-2">
-          <div className="avatar flex-col justify-center items-center">
-            <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img
-                className="w-full h-full"
-                src={user?.photoURL}
-                onError={handleImageError}
-              />
-            </div>
-          </div>
-
-          <button
-            onClick={handleLogOut}
-            type="button"
-            className="btn btn-outline btn-error py-3 px-5 h-auto min-h-fit font-medium"
-          >
-            LogOut
-          </button>
-        </div>
-      </li>
-    </>
-  );
-};
