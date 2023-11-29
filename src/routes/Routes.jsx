@@ -17,6 +17,9 @@ import PrivateRoutes from "./PrivateRoutes";
 import { axiosSecure } from "../hooks/useAxios";
 import UpdateProduct from "../pages/dashboard/updateProduct/UpdateProduct";
 import CheckoutCart from "../pages/dashboard/checkout/CheckoutCart";
+import AdminRoutes from "./AdminRoutes";
+import AdminSalesSummary from "../pages/dashboard/adminRoutes/AdminSalesSummary";
+import ManageShops from "../pages/dashboard/adminRoutes/ManageShops";
 
 const routes = createBrowserRouter([
   {
@@ -51,6 +54,22 @@ const routes = createBrowserRouter([
     element: <DashboardLayout />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "admin/sales-summary",
+        element: (
+          <AdminRoutes>
+            <AdminSalesSummary />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "admin/manage-shops",
+        element: (
+          <AdminRoutes>
+            <ManageShops />
+          </AdminRoutes>
+        ),
+      },
       {
         path: "product-management",
         element: (

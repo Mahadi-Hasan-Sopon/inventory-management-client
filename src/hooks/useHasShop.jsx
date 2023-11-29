@@ -9,8 +9,6 @@ const useHasShop = () => {
     queryFn: () => axiosSecure.get("/hasShop").then((res) => res.data),
   });
 
-  console.log({ hasShop });
-
   return { hasShop };
 };
 

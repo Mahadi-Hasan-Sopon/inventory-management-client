@@ -4,12 +4,14 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { MdOutlineInventory2 } from "react-icons/md";
 import useAdmin from "../../hooks/useAdmin";
+import useHasShop from "../../hooks/useHasShop";
 
 const Navbar = () => {
   const { user, loading, logOutUser } = useAuth();
   const { isAdmin } = useAdmin();
-  
-  console.log({isAdmin})
+  const { hasShop } = useHasShop();
+
+  console.log({ isAdmin, hasShop });
 
   const handleLogOut = () => {
     logOutUser()
@@ -39,21 +41,23 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "font-medium bg-base-100 text-blue-500"
-              : ""
-          }
-          to="/create-shop"
-        >
-          Create Shop
-        </NavLink>
-      </li>
-      {!loading && user && (
+      {!hasShop && !isAdmin && (
+        <li>
+          <NavLink
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "font-medium bg-base-100 text-blue-500"
+                : ""
+            }
+            to="/create-shop"
+          >
+            Create Shop
+          </NavLink>
+        </li>
+      )}
+      {!loading && user && !isAdmin && (
         <li>
           <NavLink
             className={({ isActive, isPending }) =>
@@ -69,20 +73,38 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-      <li>
-        <NavLink
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "font-medium bg-base-100 text-blue-500"
-              : ""
-          }
-          to="/watch-demo"
-        >
-          Watch Demo
-        </NavLink>
-      </li>
+      {!loading && isAdmin && (
+        <li>
+          <NavLink
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "font-medium bg-base-100 text-blue-500"
+                : ""
+            }
+            to="/dashboard/admin/sales-summary"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {!loading && !isAdmin && (
+        <li>
+          <NavLink
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "font-medium bg-base-100 text-blue-500"
+                : ""
+            }
+            to="/watch-demo"
+          >
+            Watch Demo
+          </NavLink>
+        </li>
+      )}
       {loading && (
         <div className="flex flex-col gap-4 w-52">
           <div className="flex gap-4 items-center">
