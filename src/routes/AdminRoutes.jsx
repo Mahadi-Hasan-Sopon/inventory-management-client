@@ -2,7 +2,7 @@
 import { Navigate } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
-import toast from "react-hot-toast";
+import ForbiddenPage from "../utils/error/ForbiddenPage";
 
 const AdminRoutes = ({ children }) => {
   const { isAdmin, isLoading } = useAdmin();
@@ -17,8 +17,7 @@ const AdminRoutes = ({ children }) => {
   if (isLoading) return;
 
   if (!isLoading && !isAdmin) {
-    toast.error("Forbidden Access!!!");
-    return;
+    return <ForbiddenPage />;
   }
 
   return children;

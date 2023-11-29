@@ -4,7 +4,7 @@ import Footer from "../components/shared/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="relative">
       <Navbar />
       <div className="min-h-[calc(100vh-355px)]">
         <Outlet />

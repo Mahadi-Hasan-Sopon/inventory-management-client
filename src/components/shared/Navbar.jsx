@@ -215,9 +215,6 @@ const Navbar = () => {
               {navItems}
             </ul>
           </div>
-          {/* <div className="navbar-end">
-            <a className="btn">Login</a>
-          </div> */}
         </div>
       </Container>
     </div>
