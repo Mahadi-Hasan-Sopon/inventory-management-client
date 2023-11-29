@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const CheckoutCart = () => {
   const loadedProducts = useLoaderData();
-  console.log(loadedProducts?.data);
+  // console.log(loadedProducts?.data);
   return (
     <div className="min-h-[62vh]">
       <Helmet>
