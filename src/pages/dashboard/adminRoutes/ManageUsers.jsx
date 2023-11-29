@@ -22,7 +22,7 @@ const ManageUsers = ({ itemsPerPage = 3 }) => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const totalPages = Math.ceil(users.length / itemsPerPage);
+  const totalPages = Math.ceil(users?.length / itemsPerPage);
 
   return (
     <div>
@@ -55,7 +55,7 @@ const ManageUsers = ({ itemsPerPage = 3 }) => {
                   <td> {user?.shopName ? user.shopName : "No Shop"} </td>
                   <td> {user?.role ? user.role : "User"} </td>
                   <td>
-                    {!user?.role && !user.shopName ? (
+                    {!user?.role && !user?.shopName ? (
                       <button className="bg-[#FE9F43] py-2 text-xs px-3 rounded-md text-white">
                         Send Offer
                       </button>
