@@ -3,9 +3,13 @@ import Container from "./Container";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { MdOutlineInventory2 } from "react-icons/md";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, loading, logOutUser } = useAuth();
+  const { isAdmin } = useAdmin();
+  
+  console.log({isAdmin})
 
   const handleLogOut = () => {
     logOutUser()

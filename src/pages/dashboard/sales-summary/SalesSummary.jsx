@@ -11,15 +11,12 @@ const SalesSummary = () => {
   const allSales = useLoaderData();
   // console.log(allSales?.data);
 
- 
-
   const salesDetails = useQuery({
     queryKey: ["salesSummary"],
     queryFn: async () =>
       axiosSecure.get("/salesSummary").then((res) => res.data),
     initialData: [],
   });
-
   // console.log(salesDetails?.data);
 
   const totalSale = allSales?.data?.reduce(
