@@ -1,15 +1,19 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import uploadImage from "../../../utils/uploadImage/uploadImage";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import Products from "../products/Products";
 
 const ProductManagement = () => {
-  const products = useLoaderData();
+  // const products = useLoaderData();
   const { user } = useAuth();
-
+  const { data: loadedProducts, refetch } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => axiosSecure.get("/products").then((res) => res.data),
+  });
   const navigate = useNavigate();
 
   const handleAddProduct = async (e) => {
@@ -94,7 +98,7 @@ const ProductManagement = () => {
       <Helmet>
         <title>Inventory || Product Management</title>
       </Helmet>
-      {products?.data?.length === 0 ? (
+      {loadedProducts?.length === 0 ? (
         <div className="flex flex-col justify-center gap-4 items-center h-[80vh]">
           <h2 className="text-2xl font-bold text-center">
             No Product Added yet!
@@ -111,7 +115,7 @@ const ProductManagement = () => {
       ) : (
         <div className="flex items-center justify-between gap-6">
           <h1 className="text-2xl font-bold">
-            Total {products?.data?.length} Product Added
+            Total {loadedProducts?.length} Product Added
           </h1>
           <button
             onClick={() =>
@@ -309,7 +313,7 @@ const ProductManagement = () => {
       </dialog>
 
       {/*  Products Table */}
-      <Products />
+      <Products products={loadedProducts} refetch={refetch} />
     </div>
   );
 };

@@ -10,7 +10,6 @@ import {
 } from "react-icons/md";
 import { FaBarsStaggered, FaAnglesLeft } from "react-icons/fa6";
 import { RxCube } from "react-icons/rx";
-import { SiGoogletagmanager } from "react-icons/si";
 import { BsShop, BsStack } from "react-icons/bs";
 import { PiUsersFourFill } from "react-icons/pi";
 
@@ -160,28 +159,12 @@ const DashboardNavItems = () => {
               to="/dashboard/product-management"
             >
               <div className="flex gap-2 items-center">
-                <SiGoogletagmanager className="text-2xl" />
+                <RxCube className="text-2xl" />
                 <span className="block">Manage Product</span>
               </div>
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "text-slate-500 font-medium p-2 block"
-                  : isActive
-                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-                  : "text-slate-500 font-medium p-2 block"
-              }
-              to="/dashboard/products"
-            >
-              <div className="flex gap-2 items-center">
-                <RxCube className="text-2xl" />
-                <span className="block">Products</span>
-              </div>
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               className={({ isActive, isPending }) =>

@@ -8,7 +8,6 @@ import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import ProductManagement from "../pages/dashboard/product-management/ProductManagement";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Products from "../pages/dashboard/products/Products";
 import Checkout from "../pages/dashboard/checkout/Checkout";
 import SubscriptionAndPayment from "../pages/dashboard/subscription-payment/SubscriptionAndPayment";
 import SalesCollection from "../pages/dashboard/sales-collection/SalesCollection";
@@ -87,14 +86,6 @@ const routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: () => axiosSecure.get("/products"),
-      },
-      {
-        path: "products",
-        element: (
-          <PrivateRoutes>
-            <Products />
-          </PrivateRoutes>
-        ),
       },
       {
         path: "sales-collection",

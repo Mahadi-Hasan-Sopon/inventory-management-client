@@ -1,16 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../../hooks/useAxios";
-import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
-const Products = () => {
-  const { data: loadedProducts, refetch } = useQuery({
-    queryKey: ["products"],
-    queryFn: () => axiosSecure.get("/products").then((res) => res.data),
-  });
-
+const Products = ({ products, refetch }) => {
   const handleDeleteClick = (productId) => {
     toast((t) => (
       <div>
@@ -62,7 +57,7 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {loadedProducts?.map((product, index) => (
+            {products?.map((product, index) => (
               <tr key={product?._id} className="text-base text-slate-600">
                 <td> {index + 1} </td>
                 <td>
