@@ -4,6 +4,7 @@ import uploadImage from "../../../utils/uploadImage/uploadImage";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../../hooks/useAxios";
 import { Helmet } from "react-helmet";
+import Products from "../products/Products";
 
 const ProductManagement = () => {
   const products = useLoaderData();
@@ -306,6 +307,9 @@ const ProductManagement = () => {
           </div>
         </div>
       </dialog>
+
+      {/*  Products Table */}
+      <Products />
     </div>
   );
 };
