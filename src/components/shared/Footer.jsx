@@ -4,13 +4,13 @@ import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-base-200 text-base-content">
+      <footer className="footer p-10 text-base-content border-t border-slate-100">
         <aside>
           <h1 className="text-3xl font-bold text-neutral-600">Inventory</h1>
           <p>
-            ACME Industries Ltd.
+            All in one Inventory Management System
             <br />
-            Providing reliable tech since 1992
+            Providing reliable service since 2023
           </p>
         </aside>
         <nav>
@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
-      <div className="footer footer-center p-4 bg-base-200/60 text-base-content">
+      <div className="footer footer-center pt-4 text-base-content border-t border-slate-100">
         <aside>
           <p>
             Copyright © 2023 - All right reserved by <b>Mahadi Hasan</b>
