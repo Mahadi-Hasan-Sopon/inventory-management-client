@@ -49,7 +49,7 @@ The Inventory Management System is built using the following technologies and li
 
 ## [Alternative Site Link](https://inventory-management-assignment.surge.sh)
 
-### [Server Side Private repo:](https://github.com/Mahadi-Hasan-Sopon/inventory-management-server)
+### [Server Side Repository Link:](https://github.com/Mahadi-Hasan-Sopon/inventory-management-server)
 
 <hr>
 
