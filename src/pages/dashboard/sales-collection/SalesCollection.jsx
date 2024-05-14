@@ -5,10 +5,12 @@ import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import { Helmet } from "react-helmet";
 import { MdShoppingCart } from "react-icons/md";
+import useCart from "../../../hooks/useCart";
 
 const SalesCollection = () => {
   const loadedProducts = useLoaderData();
   const { user } = useAuth();
+  const { cartItems, setFetchCartData, isLoading } = useCart();
 
   const [products, setProducts] = useState(loadedProducts.data);
 
@@ -24,7 +26,7 @@ const SalesCollection = () => {
     }
   };
 
-  const handleCheckoutClick = async (productId) => {
+  const handleAddToCartClick = async (productId) => {
     const loadingToast = toast.loading("Adding to cart....");
     const product = loadedProducts?.data.find(
       (product) => product._id === productId
@@ -57,8 +59,10 @@ const SalesCollection = () => {
       // console.log(response.data);
       if (response?.data?.acknowledged && response?.data?.insertedId) {
         toast.success("Product added to Cart", { id: loadingToast });
+        setFetchCartData(true);
       } else if (response?.data?.modifiedCount > 0) {
         toast.success("Product Quantity Updated by 1", { id: loadingToast });
+        setFetchCartData(true);
       } else {
         toast.error("Something went wrong!", { id: loadingToast });
       }
@@ -98,7 +102,7 @@ const SalesCollection = () => {
           <div className="cartIcon relative">
             <MdShoppingCart className="text-3xl text-[#FE9F43]" />
             <div className="absolute w-5 h-5 rounded-full -bottom-2 -right-2 bg-[#FE9F43] flex justify-center items-center text-white font-medium text-xs">
-              0
+              {isLoading ? "0" : cartItems?.soldQuantity}
             </div>
           </div>
         </div>
@@ -139,7 +143,7 @@ const SalesCollection = () => {
                 <td className="p-0"> ${product?.sellingPrice} </td>
                 <td className="p-0">
                   <button
-                    onClick={() => handleCheckoutClick(product._id)}
+                    onClick={() => handleAddToCartClick(product._id)}
                     className="btn btn-info inline-block px-3"
                   >
                     Add to Cart
