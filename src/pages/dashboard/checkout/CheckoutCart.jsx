@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useCart from "../../../hooks/useCart";
 
 const CheckoutCart = () => {
-  const loadedProducts = useLoaderData();
-  // console.log(loadedProducts?.data);
+  const { cartItems, isLoading } = useCart();
+
   return (
     <div className="min-h-[62vh]">
       <Helmet>
@@ -11,18 +12,18 @@ const CheckoutCart = () => {
       </Helmet>
       <div className="flex justify-between w-full pe-4">
         <h1 className="text-3xl font-bold">
-          Checkout Cart: {loadedProducts?.data?.length}
+          Checkout Cart: {cartItems?.soldQuantity}
         </h1>
         <button
           className="btn btn-success text-base"
-          disabled={loadedProducts.data.length < 1}
+          disabled={!isLoading && cartItems.soldQuantity < 1}
         >
           <Link to="/dashboard/checkout">Proceed Checkout</Link>
         </button>
       </div>
       <div className="divider my-1"></div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {loadedProducts?.data?.map((product) => (
+        {cartItems?.totalItems?.map((product) => (
           <div
             key={product._id}
             className="card card-compact w-full bg-base-100 shadow-xl"

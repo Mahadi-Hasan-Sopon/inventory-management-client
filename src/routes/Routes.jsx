@@ -103,7 +103,6 @@ const routes = createBrowserRouter([
             <CheckoutCart />
           </PrivateRoutes>
         ),
-        loader: () => axiosSecure.get("/carts"),
       },
       {
         path: "checkout",
@@ -112,7 +111,6 @@ const routes = createBrowserRouter([
             <Checkout />
           </PrivateRoutes>
         ),
-        loader: () => axiosSecure.get("/carts"),
       },
       {
         path: "subscription",

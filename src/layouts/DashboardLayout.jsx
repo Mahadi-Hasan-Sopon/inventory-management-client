@@ -4,9 +4,7 @@ import {
   MdHome,
   MdOutlineInventory2,
   MdOutlinePayment,
-  MdOutlineShoppingCartCheckout,
   MdOutlineSummarize,
-  MdShoppingCart,
 } from "react-icons/md";
 import { FaBarsStaggered, FaAnglesLeft } from "react-icons/fa6";
 import { RxCube } from "react-icons/rx";
@@ -182,40 +180,7 @@ const DashboardNavItems = () => {
               </div>
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "text-slate-500 font-medium p-2 block"
-                  : isActive
-                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-                  : "text-slate-500 font-medium p-2 block"
-              }
-              to="/dashboard/cart"
-            >
-              <div className="flex gap-2 items-center">
-                <MdShoppingCart className="text-2xl" />
-                <span className="block">Cart</span>
-              </div>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "text-slate-500 font-medium p-2 block"
-                  : isActive
-                  ? "font-medium text-[#FE9F43] w-full bg-[#FE9F43]/10 p-2 block rounded"
-                  : "text-slate-500 font-medium p-2 block"
-              }
-              to="/dashboard/checkout"
-            >
-              <div className="flex gap-2 items-center">
-                <MdOutlineShoppingCartCheckout className="text-2xl" />
-                <span className="block">Checkout</span>
-              </div>
-            </NavLink>
-          </li>
+
           <li>
             <NavLink
               className={({ isActive, isPending }) =>

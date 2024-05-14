@@ -1,20 +1,13 @@
 import { axiosSecure } from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import jsPDF from "jspdf";
 import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
 
 const Checkout = () => {
-  // const loadedProducts = useLoaderData();
-  // console.log(loadedProducts?.data)
   const { user } = useAuth();
-
-  const { data: loadedProducts, refetch } = useQuery({
-    queryKey: ["checkoutProducts"],
-    queryFn: async () =>
-      await axiosSecure.get("/carts").then((res) => res.data),
-  });
+  const { cartItems, refetch } = useCart();
 
   const pdf = new jsPDF();
 
@@ -22,9 +15,10 @@ const Checkout = () => {
 
   const handleGetPaidClick = async () => {
     const loadingToast = toast.loading("Adding to Sales Collection.");
+    refetch();
     try {
       const response = await axiosSecure.post("/sales", {
-        products: loadedProducts,
+        products: cartItems?.totalItems,
       });
 
       if (response?.data?.salesResult?.insertedCount > 0) {
@@ -41,7 +35,7 @@ const Checkout = () => {
         });
         pdf.text("Invoice", 50, 10);
         let yPosition = 20;
-        loadedProducts.forEach((product, index) => {
+        cartItems?.totalItems.forEach((product, index) => {
           yPosition += 10;
           pdf.text(`Product ${index + 1}`, 20, yPosition);
           yPosition += 5;
@@ -82,10 +76,10 @@ const Checkout = () => {
       </Helmet>
       <div className="flex justify-between w-full pe-4">
         <h1 className="text-3xl font-bold">
-          Checkout: {loadedProducts?.data?.length}
+          Checkout: {cartItems?.soldQuantity}
         </h1>
         <button
-          disabled={loadedProducts?.length < 1}
+          disabled={cartItems?.soldQuantity < 1}
           className="btn btn-info text-base"
           onClick={handleGetPaidClick}
         >
@@ -94,7 +88,7 @@ const Checkout = () => {
       </div>
       <div className="divider my-1"></div>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {loadedProducts?.map((product) => (
+        {cartItems?.totalItems.map((product) => (
           <div
             key={product._id}
             className="card card-compact w-full bg-base-100 shadow-xl"

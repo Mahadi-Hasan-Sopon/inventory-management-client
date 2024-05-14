@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { axiosSecure } from "../../../hooks/useAxios";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import { Helmet } from "react-helmet";
-import { MdShoppingCart } from "react-icons/md";
+import { FiShoppingCart } from "react-icons/fi";
 import useCart from "../../../hooks/useCart";
 
 const SalesCollection = () => {
   const loadedProducts = useLoaderData();
   const { user } = useAuth();
-  const { cartItems, setFetchCartData, isLoading } = useCart();
+  const { cartItems, isLoading, refetchCartItems } = useCart();
 
   const [products, setProducts] = useState(loadedProducts.data);
 
@@ -59,13 +59,12 @@ const SalesCollection = () => {
       // console.log(response.data);
       if (response?.data?.acknowledged && response?.data?.insertedId) {
         toast.success("Product added to Cart", { id: loadingToast });
-        setFetchCartData(true);
       } else if (response?.data?.modifiedCount > 0) {
         toast.success("Product Quantity Updated by 1", { id: loadingToast });
-        setFetchCartData(true);
       } else {
         toast.error("Something went wrong!", { id: loadingToast });
       }
+      refetchCartItems();
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message || error?.message, {
@@ -99,12 +98,15 @@ const SalesCollection = () => {
               placeholder="Search by id"
             />
           </div>
-          <div className="cartIcon relative">
-            <MdShoppingCart className="text-3xl text-[#FE9F43]" />
-            <div className="absolute w-5 h-5 rounded-full -bottom-2 -right-2 bg-[#FE9F43] flex justify-center items-center text-white font-medium text-xs">
-              {isLoading ? "0" : cartItems?.soldQuantity}
+          <Link
+            to="/dashboard/cart"
+            className="cartIcon relative cursor-pointer"
+          >
+            <FiShoppingCart className="text-3xl text-[#FE9F43]" />
+            <div className="absolute w-4 h-4 rounded-full -top-1 -right-2 bg-[#FE9F43] flex justify-center items-center text-white font-medium text-[10px]">
+              {isLoading ? 0 : cartItems?.soldQuantity}
             </div>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="overflow-x-auto max-w-full">

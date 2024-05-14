@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { axiosSecure } from "./useAxios";
-import { useState } from "react";
 
 const useCart = () => {
-  const [fetchCartData, setFetchCartData] = useState(false);
-
   const {
     data: cartItems,
     error,
@@ -22,14 +19,15 @@ const useCart = () => {
     },
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    enabled: !!fetchCartData,
   });
   if (error) {
     console.error(error);
     throw new Error(error?.message ? error.message : error);
   }
 
-  return { cartItems, refetch, isLoading, setFetchCartData };
+  const refetchCartItems = () => refetch();
+
+  return { cartItems, refetchCartItems, isLoading };
 };
 
 export default useCart;
