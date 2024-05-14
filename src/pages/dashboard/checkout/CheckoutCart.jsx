@@ -15,9 +15,7 @@ const CheckoutCart = () => {
         <title>Inventory || Cart</title>
       </Helmet>
       <div className="flex justify-between w-full pe-4">
-        <h1 className="text-3xl font-bold">
-          Cart Quantity: {cartItems?.soldQuantity}
-        </h1>
+        <h1 className="text-3xl font-bold">Cart</h1>
         <button
           className={`btn btn-success text-white hover:text-black ${
             isLoading && "w-44 h-12"
@@ -32,7 +30,7 @@ const CheckoutCart = () => {
         </button>
       </div>
       <div className="divider my-1"></div>
-      <div className="action-center flex w-full justify-between gap-4 items-center">
+      <div className="header-action-center flex w-full justify-between gap-4 items-center">
         <div className="form-control">
           <label className="cursor-pointer label">
             <input
@@ -40,7 +38,7 @@ const CheckoutCart = () => {
               name="select-all"
               id="select-all"
               defaultChecked={false}
-              className="checkbox checkbox-info"
+              className="checkbox checkbox-warning"
             />
             <span className="label-text ps-2 text-base">
               Select All ({cartItems?.soldQuantity}){"items"}
@@ -57,17 +55,23 @@ const CheckoutCart = () => {
           {/* head */}
           <thead>
             <tr>
+              <th></th>
               <th>SN</th>
               <th className="text-center">Item Details</th>
-
-              <th>Price</th>
-              <th>Actions</th>
+              <th className="text-center">Price</th>
+              <th className="text-center">Quantity</th>
+              <th className="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
             {cartItems?.totalItems?.map((product, idx) => (
               <tr key={product._id}>
-                <th>{idx + 1}</th>
+                <td className="pl-1">
+                  <label>
+                    <input type="checkbox" className="checkbox checkbox-info" />
+                  </label>
+                </td>
+                <td className="text-center font-semibold">{idx + 1}</td>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -80,24 +84,28 @@ const CheckoutCart = () => {
                     </div>
                     <div>
                       <div className="font-bold">{product?.productName}</div>
-                      <div className="text-sm opacity-50 w-9/12 text-justify">
+                      <div className="text-sm opacity-50 w-11/12 text-justify">
                         <span>
                           Desc: {product?.productDescription}
                           {", "}
                         </span>
-                        <span> From: {product?.productLocation} </span>
+                        <span>
+                          From: {product?.productLocation}
+                          {", "}
+                        </span>
+                        <span> Stock: {product?.productQuantity} </span>
                       </div>
                     </div>
                   </div>
                 </td>
 
                 <td> ${product?.sellingPrice?.toFixed(2)} </td>
-                <th>
+                <td>
                   <UnitHandler
                     productStockQuantity={product?.productQuantity}
                     defaultSelectedQuantity={product?.soldQuantity}
                   />
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>
