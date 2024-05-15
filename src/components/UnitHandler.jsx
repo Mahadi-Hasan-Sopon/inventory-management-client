@@ -38,6 +38,7 @@ const UnitHandler = ({ productStockQuantity, defaultSelectedQuantity }) => {
           className="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-base cursor-default flex items-center text-gray-700"
           name="custom-input-number"
           value={selectedQuantity}
+          onChange={(e) => setSelectedQuantity(e.target.value)}
         ></input>
         <button
           data-action="increment"
