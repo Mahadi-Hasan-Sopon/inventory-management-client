@@ -11,8 +11,6 @@ const Checkout = () => {
 
   const pdf = new jsPDF();
 
-  // console.log(loadedProducts)
-
   const handleGetPaidClick = async () => {
     const loadingToast = toast.loading("Adding to Sales Collection.");
     refetch();
