@@ -3,6 +3,7 @@ import { axiosSecure } from "../../../hooks/useAxios";
 import { Helmet } from "react-helmet";
 import { BiCartDownload, BiMoney } from "react-icons/bi";
 import { IoBagCheck } from "react-icons/io5";
+import AdminSalesChart from "./AdminSalesChart";
 
 const AdminSalesSummary = () => {
   const { data: allSales } = useQuery({
@@ -12,13 +13,13 @@ const AdminSalesSummary = () => {
   });
 
   return (
-    <div>
+    <div id="admin-sales-summary">
       <Helmet>
         <title>Inventory || Admin Sales Summary</title>
       </Helmet>
       <h1 className="text-3xl font-bold"> Sales View </h1>
       <div className="divider my-2"></div>
-      <div className="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 justify-center sm:justify-between items-center gap-6 my-6 me-4">
+      <div className="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 justify-center sm:justify-between items-center gap-6 my-6">
         {/* Total Sale */}
         <div className="totalSale flex gap-5 p-5 items-center border rounded-lg w-full">
           <div className="icon">
@@ -27,7 +28,9 @@ const AdminSalesSummary = () => {
             </span>
           </div>
           <div className="space-y-1">
-            <h2 className="text-2xl font-bold">${allSales?.totalSales}</h2>
+            <h2 className="text-2xl font-bold">
+              ${allSales?.totalSalesAmount}
+            </h2>
             <p className="text-sm font-normal">Total Product Sales </p>
           </div>
         </div>
@@ -56,6 +59,16 @@ const AdminSalesSummary = () => {
           </div>
         </div>
       </div>
+
+      {/* sales by shop chart */}
+      <div className="sale-summary border rounded min-w-[250px] w-full py-6">
+        <h2 className="text-lg font-bold text-slate-800 mb-6 px-4">
+          Sales By Shop
+        </h2>
+        <AdminSalesChart />
+      </div>
+
+      {/* <RecentSales data={recentSales} /> */}
     </div>
   );
 };
