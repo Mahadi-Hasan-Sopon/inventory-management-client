@@ -42,6 +42,12 @@ const AdminSalesChart = () => {
     ? salesByShop.slice(0, 6)
     : salesByShop;
 
+  const dataToDisplayForTabletDevice = isLoading
+    ? []
+    : salesByShop?.length > 4
+    ? salesByShop.slice(0, 4)
+    : salesByShop;
+
   const dataToDisplayForSmallDevice = isLoading
     ? []
     : salesByShop?.length > 3
@@ -50,7 +56,11 @@ const AdminSalesChart = () => {
 
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <BarChart className="hidden md:block" data={dataToDisplayForLargeDevice}>
+      {/* for tablet and large */}
+      <BarChart
+        className="hidden md:block ps-4"
+        data={dataToDisplayForLargeDevice}
+      >
         <XAxis dataKey={"shopName"} />
         <YAxis />
         <Bar
@@ -64,7 +74,24 @@ const AdminSalesChart = () => {
           ))}
         </Bar>
       </BarChart>
-      <BarChart className=" md:hidden" data={dataToDisplayForSmallDevice}>
+      <BarChart
+        className="hidden sm:block md:hidden ps-4"
+        data={dataToDisplayForTabletDevice}
+      >
+        <XAxis dataKey={"shopName"} />
+        <YAxis />
+        <Bar
+          dataKey={"totalSales"}
+          shape={<TriangleBar />}
+          fill="#8884d8"
+          label={{ position: "top" }}
+        >
+          {dataToDisplayForTabletDevice?.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+          ))}
+        </Bar>
+      </BarChart>
+      <BarChart className="sm:hidden" data={dataToDisplayForSmallDevice}>
         <XAxis dataKey={"shopName"} />
         <YAxis />
         <Bar dataKey={"totalSales"} fill="#8884d8" label={{ position: "top" }}>

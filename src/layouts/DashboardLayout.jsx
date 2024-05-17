@@ -271,7 +271,7 @@ const DashboardLayout = () => {
                 <span className="block text-2xl">Inventory</span>
               </div>
             </div>
-            <div className="py-6">
+            <div className="md:px-4 py-6">
               <Outlet />
             </div>
             <Footer />

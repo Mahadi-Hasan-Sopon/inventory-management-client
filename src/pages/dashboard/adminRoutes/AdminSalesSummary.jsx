@@ -61,7 +61,7 @@ const AdminSalesSummary = () => {
       </div>
 
       {/* sales by shop chart */}
-      <div className="sale-summary border rounded min-w-[250px] w-full py-6">
+      <div className="sale-summary border rounded min-w-[250px] w-full py-6 px-2">
         <h2 className="text-lg font-bold text-slate-800 mb-6 px-4">
           Sales By Shop
         </h2>
