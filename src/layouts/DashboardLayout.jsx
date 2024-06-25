@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import Container from "../components/shared/Container";
 import {
   MdHome,
@@ -266,10 +266,16 @@ const DashboardLayout = () => {
                   onClick={() => setChecked(!checked)}
                 />
               </label>
-              <div className="text-2xl font-bold flex items-center gap-2">
+              {/* <div className="text-2xl font-bold flex items-center gap-2">
                 <MdOutlineInventory2 />{" "}
                 <span className="block text-2xl">Inventory</span>
-              </div>
+              </div> */}
+              <Link
+                to="/"
+                className="text-2xl font-bold flex items-center gap-2 cursor-pointer"
+              >
+                <MdOutlineInventory2 /> <span className="block">Inventory</span>
+              </Link>
             </div>
             <div className="md:px-4 py-6">
               <Outlet />
@@ -296,10 +302,17 @@ const DashboardLayout = () => {
                   />
                 </div>
                 <li className="px-2">
-                  <div className="text-2xl font-bold flex items-center gap-2">
+                  {/* <div className="text-2xl font-bold flex items-center gap-2">
                     <MdOutlineInventory2 />{" "}
                     <span className="block text-2xl">Inventory</span>
-                  </div>
+                  </div> */}
+                  <Link
+                    to="/"
+                    className="text-2xl font-bold flex items-center gap-2 cursor-pointer"
+                  >
+                    <MdOutlineInventory2 />{" "}
+                    <span className="block">Inventory</span>
+                  </Link>
                 </li>
                 <div className="divider my-1"></div>
                 <DashboardNavItems />

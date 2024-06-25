@@ -201,15 +201,16 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="news-latter bg-[#FE9F43] w-full flex justify-center items-center gap-10 py-12">
-        <h2 className="text-4xl font-bold text-white">
+
+      <div className="news-latter bg-[#FE9F43] w-full flex flex-col md:flex-row justify-center items-center gap-10 py-12 px-6">
+        <h2 className="text-4xl font-bold text-white text-center md:text-left flex-1">
           Subscribe To Our NewsLetters
         </h2>
-        <div className="flex">
+        <div className="flex justify-center items-center w-full md:w-1/2">
           <input
             type="email"
             name="news-letter"
-            className="block bg-white text-slate-600 max-w-md min-w-full p-3 text-xl font-medium rounded-s placeholder:text-xl"
+            className="block bg-white text-slate-600 max-w-md w-full p-3 text-xl font-medium rounded-s placeholder:text-xl"
             placeholder="Enter your Email"
           />
           <button className="py-3 px-3 hover:cursor-pointer rounded-e font-semibold text-lg bg-white">
